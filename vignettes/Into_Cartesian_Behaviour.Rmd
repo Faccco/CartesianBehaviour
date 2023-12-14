@@ -1,0 +1,172 @@
+---
+title: "Introduction to Cartesian Behaviour"
+author: "Faco (de Souza, Falco Luís Gonçalves)"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Intro_Cartesian_Behavior}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>", fig.width = 7, fig.height = 6.5, fig.align = "center")
+library(tidyverse)
+```
+
+## Briefing
+<br>
+This package aims to simplify the way to deal with Cartesian data and turn it into movement and maybe behavioral evidence.
+Note that this package don't track nor generate the trajectories, for this we recommend [TrackR](https://swarm-lab.github.io/trackR/) and [trajr](https://github.com/JimMcL/trajr) respectively. In this first version you must create zones of interest even if the only zone of interest is the whole tracking area. Also the  outputs can be computed as over time data if any interest[.](https://www.youtube.com/watch?v=JVyPSIiqgwk)
+<br>
+
+## Basic usage
+
+
+### Sigle track
+Considering you have a trajectory of one sample:
+<br>
+
+
+```{r data, A, results='hide'}
+Traj <- trajr::TrajGenerate(10000, random = T, stepLength = .009, angularErrorSd = .5, fps = 30)
+
+#Create the zones of interest
+#Note that you can manually drawn by setting Zones = NA in the Allbasics function or call Zone_int
+#But in this case the zones are made by code directly
+
+Z1 <- data.frame(x = c(-12,0,0,-12), y = c(10,10,0,0))
+Z2 <- data.frame(x = c(0,12,12,0),   y = c(10,10,0,0))
+Z3 <- data.frame(x = c(0,12,12,0),   y = c(0,0,-10,-10))
+Z4 <- data.frame(x = c(-12,0,0,-12), y = c(0,0,-10,-10))
+ZN <- list(Z1, Z2, Z3, Z4)
+Zonas <- list(ZN)
+rm(Z1, Z2, Z3, Z4, ZN)
+
+#Perform all the mesures
+TRAJ2D <- CartesianBehaviour::Allbasics(Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+          Zones = Zonas, threshold = 3, Dist.reg = "point", reg = data.frame(x = 0, y = 0))
+
+#Create the data frame of the distance traveled
+Distance.Zones <- data.frame(t(CartesianBehaviour::dist_zone(TRAJ2D)))
+
+colnames(Distance.Zones) <- "Zone"
+```
+<br>
+The output is a data frame with the refereed measure.
+```{r, echo=FALSE}
+Distance.Zone <- round(Distance.Zones, 2)
+rownames(Distance.Zone) <- rownames(Distance.Zones)
+colnames(Distance.Zone) <- c("Zone")
+
+
+```
+
+
+
+```{r baba, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE, fig.width=9}
+
+htmlTable::htmlTable(Distance.Zone, pos.caption = "bottom",
+          caption = "Table output, edited for better visualization.")
+
+```
+
+
+Here we plot the data from this single track using [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html)[.](https://www.youtube.com/watch?v=i5uSbp0YDhc)
+<br>
+```{r}
+#| fig.alt = "Plot of the total distance traveled an te distance traveled inside the zones of interest"  
+ggplot2::ggplot(Distance.Zones,ggplot2::aes(x=rownames(Distance.Zones), y=Zone)) +
+  ggplot2::geom_bar(stat="identity", fill= "cyan", color="black") +
+  ggplot2::xlab("Zones") +
+  ggplot2::ylim(0,2000) +
+  ggplot2::ylab("Distance (fantasy unit)") +
+  ggplot2::ggtitle("Distance by zones")+
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(hjust = .5, size = 14, face = "bold", colour = "red", 
+                                       family = "sans", angle = 0, vjust = 0, lineheight = 1),
+    axis.title.x = ggplot2::element_text(hjust = .5, size = 12, face = "bold", colour = "black", 
+                                         family = "sans", angle = 0, vjust = 0, lineheight = 1),
+    axis.text.x = ggplot2::element_text(hjust = .5, size = 7, face = "plain", colour = "black", 
+                                        family = "sans", angle = 0, vjust = 0, lineheight = 1),
+    axis.text.y = ggplot2::element_text(hjust = .5, size = 12, face = "plain", colour = "black", 
+                                        family = "sans", angle = 90, vjust = 0, lineheight = 1),
+    axis.title.y = ggplot2::element_text(hjust = .5, size = 12, face = "bold", colour = "black", 
+                                         family = "sans", angle = 90, vjust = 0, lineheight = 1))
+
+```
+<br>
+
+### Sample of tracks
+
+For any of the measures in this package, if you are dealing with multiple samples, it is possible to list them and call **g_** + **function**. It will operate the samples the same way in a single track data frame.<br>
+
+```{r data, B, results='hide'}
+#Creating an trajectory using the function from the package trajr
+TRAJ <- list()
+for(i in 1:10){
+  TRAJ[[i]] <- trajr::TrajGenerate(10000, random = T, stepLength = .01,
+                                   angularErrorSd = .8, fps = 30)
+}
+
+#Create the zones of interest
+Z1 <- data.frame(x = c(-12,0,0,-12), y = c(10,10,0,0))
+Z2 <- data.frame(x = c(0,12,12,0),   y = c(10,10,0,0))
+Z3 <- data.frame(x = c(0,12,12,0),   y = c(0,0,-10,-10))
+Z4 <- data.frame(x = c(-12,0,0,-12), y = c(0,0,-10,-10))
+ZN <- list(Z1, Z2, Z3, Z4)
+Zonas <- list(ZN)
+rm(Z1, Z2, Z3, Z4, ZN, i)
+
+#Perform all the mesures
+TRAJS2D  <- CartesianBehaviour::g_Allbasics(TRAJ, Xaxi = "x", Yaxi = "y",
+                        frames = "time", Zones = Zonas,
+                        threshold = 3, Dist.reg = "point",
+                        reg = data.frame(x = 0, y = 0))
+
+
+#Create the data frame of the distance to a point of interest of multiple subjects
+Group.Distance.Point <- CartesianBehaviour::g_over_time_ana(TRAJS2D, time.ana = 2)
+
+PTtm <- Group.Distance.Point[,colnames(Group.Distance.Point) != "time"]
+
+PtDisWTsd <- Group.Distance.Point %>% reframe(mean=rowMeans(PTtm),
+                                              sd=apply(PTtm, 1, sd), time = time)
+
+```
+<br>
+The output is  data frame with all the measures for all the samples analyzed over time.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE, fig.width=9}
+
+knitr::kable(Group.Distance.Point, format = "html", align = 'c') %>% kableExtra::kable_styling("striped", font_size = 12)
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+#| fig.alt = "Plot of the mean distance to a point over time for muutiple samples with SD"
+ggplot(data=PtDisWTsd, aes(x=time, y=mean)) +
+  geom_smooth(method = NULL)+
+  geom_point(size=3) +
+  geom_errorbar(aes(ymin=mean-sd, ymax=mean+sd), width=.5) +
+  labs(
+    title = "Mean distance over time",
+    subtitle = "",
+    x = "Time",
+    y = "Distance (fantasy unit)"
+  ) +
+  theme_classic() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold", colour = "red",
+                              family = "sans", angle = 0, vjust = 0, lineheight = 1),
+    axis.title.x = element_text(hjust = 0.5, size = 12, face = "bold", colour = "black",
+                                family = "sans", angle = 0, vjust = 0, lineheight = 1),
+    axis.text.x = element_text(hjust = 0.5, size = 12, face = "plain", colour = "black",
+                               family = "sans", angle = 0, vjust = 0, lineheight = 1),
+    axis.text.y = element_text(hjust = 0.5, size = 12, face = "plain", colour = "black",
+                               family = "sans", angle = 90, vjust = 0, lineheight = 1),
+    axis.title.y = element_text(hjust = 0.5, size = 12, face = "bold", colour = "black",
+                                family = "sans", angle = 90, vjust = 0, lineheight = 1),
+    plot.subtitle = element_text(size = 10, face = "bold", hjust=0.5),
+    plot.caption = element_text(face = "italic"))
+```
+
