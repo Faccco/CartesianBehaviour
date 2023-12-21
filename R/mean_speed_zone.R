@@ -70,13 +70,13 @@ mean_speed_zone <- function(dist_zone, time_zones, time_reescale = 1, dist_reesc
     www <- base::data.frame()
     for(i in  1:base::nrow(dist_zone)){
       AAA <- dist_zone[dist_zone$Animal == base::paste("Animal_", i, sep = ""),]
-      AAA <- AAA[,1:(base::ncol(AAA)-1)]
+      AAA <- AAA[,1:(base::ncol(AAA)-2)]
       BBB <- time_zones[time_zones$Animal == base::paste("Animal_", i, sep = ""),]
       BBB <- base::data.frame(base::t(BBB[,1]))
       CCC <- (base::data.frame(AAA)/dist_reescale)/(base::data.frame(BBB)/time_reescale)
       www <- base::rbind(www, CCC)
     }
-    namezon <- base::c(base::paste("Mean speed in Zone", 1:(base::ncol(www)-1), sep=""), "Mean speed")
+    namezon <- base::c(base::paste("Mean speed in Zone", 1:base::ncol(www), sep=""))
     base::colnames(www) <- namezon
     www$Animal <- base::c(base::paste("Animal_", 1:base::nrow(www), sep = ""))
     www
