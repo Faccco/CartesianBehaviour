@@ -85,15 +85,15 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
 
   if("point" %in% Dist.reg){
 
-    listzones <- CartesianBehaviour::reg.dist.by.frame(list_sample = listzones, Dist.reg = "point", reg, faceZ, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena)
+    listzones <- CartesianBehaviour::reg_dist_by_frame(list_sample = listzones, Dist.reg = "point", reg, faceZ, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena)
   }
   if("line" %in% Dist.reg){
 
-    listzones <- CartesianBehaviour::reg.dist.by.frame(list_sample = listzones, Dist.reg = "line", reg, faceZ, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena)
+    listzones <- CartesianBehaviour::reg_dist_by_frame(list_sample = listzones, Dist.reg = "line", reg, faceZ, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena)
   }
   if("plane" %in% Dist.reg){
 
-    listzones <- CartesianBehaviour::reg.dist.by.frame(list_sample = listzones, Dist.reg = "plane", reg, faceZ, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena)
+    listzones <- CartesianBehaviour::reg_dist_by_frame(list_sample = listzones, Dist.reg = "plane", reg, faceZ, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena)
   }
 
   listzones

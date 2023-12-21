@@ -50,10 +50,10 @@
 #' #pre-define the point but you can turn the Dist.reg parameter to
 #' #"line" or "plane" and reg to "NOT", set the arena measures and
 #' #manually pin the  point in the Plot tab
-#' TRAJ2D <- reg.dist.by.frame(TRAJ2D, Dist.reg = "point",
+#' TRAJ2D <- reg_dist_by_frame(TRAJ2D, Dist.reg = "point",
 #'                             reg = data.frame(x = 0, y = 0))
 #' #View(TRAJ2D[[1]][["Total"]][[1]])
-reg.dist.by.frame <- function(list_sample, Dist.reg = "plan", reg = "NOT", faceZ = 0, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena = F){
+reg_dist_by_frame <- function(list_sample, Dist.reg = "plan", reg = "NOT", faceZ = 0, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena = F){
 
   rara <- base::as.numeric(base::pmatch(Dist.reg,
                                         base::c("point", "line", "plane")))
