@@ -79,7 +79,7 @@ ggplot2::ggplot(Distance.Zones,ggplot2::aes(x=rownames(Distance.Zones), y=Zone))
   ggplot2::geom_bar(stat="identity", fill= "cyan", color="black") +
   ggplot2::xlab("Zones") +
   ggplot2::ylim(0,2000) +
-  ggplot2::ylab("Distance (fantasy unit)") +
+  ggplot2::ylab("Distance (fictional units)") +
   ggplot2::ggtitle("Distance by zones")+
   ggplot2::theme(
     plot.title = ggplot2::element_text(hjust = .5, size = 14, face = "bold", colour = "red", 
@@ -152,7 +152,7 @@ ggplot(data=PtDisWTsd, aes(x=time, y=mean)) +
     title = "Mean distance over time",
     subtitle = "",
     x = "Time",
-    y = "Distance (fantasy unit)"
+    y = "Distance (fictional units)"
   ) +
   theme_classic() +
   theme(
