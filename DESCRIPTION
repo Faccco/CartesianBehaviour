@@ -6,7 +6,8 @@ Authors@R:
     role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7894-6889"))
 Description: With this pakage its possible do analise 2d and 3d data.
     Analize parameters as absolut turn angle, menadering (this two only in
-    2d), speed, total distance and distance considering zones of interest.
+    2d), speed, total distance and distance considering zones of interest, or 
+    even distnces to a point, line or plane over time.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
