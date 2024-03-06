@@ -26,6 +26,7 @@
 #' @param Circ_Arena A logical indicating whether do draw a circular boundary to position the point . FALSE by default.
 #' @param Zones A data frame crated by \link[CartesianBehaviour]{Zones_int} containing the zones of interest. NA by  default to create the zones within the analysis.
 #' @param reg A data frame with the x,y (and optionally z) axis. "NOT" by default to pin the point/line/plane manually in the plot tab.
+#' @param time The column name in dados representing the time stamp in integers.
 #'
 #' @return A list containing the data frames witch the subject was inside the zone of interest and all to perform all the 1 subject measures of this package.
 #' @export Allbasics
@@ -49,11 +50,11 @@
 #' rm(Z1, Z2, Z3, Z4, ZN)
 #'
 #' #Perform all the measures
-#' TRAJ2D <- Allbasics(dado = Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+#' TRAJ2D <- Allbasics(dado = Traj, Xaxi = "x", Yaxi = "y", time = "time",
 #'                     Zones = Zonas, threshold = 3, Dist.reg = "point",
 #'                     reg = data.frame(x = 0, y = 0))
 #' #View(TRAJ2D)
-Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = NA, frames = "frame", fps = 30,
+Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = NA, time = NA, frames = NA, fps = 30,
                       id_col = NULL, id = 1, Zones = NA, n.zonesd2, n.zonesd3 = 0, faceZ = 0,
                       maxX = NA, minX = NA, maxY = NA, minY = NA, maxZ = NA, minZ = NA, npts = 4, Circ_Arena = F, threshold = 5,
                       Dist.reg = NA, reg = "NOT"){
@@ -69,7 +70,7 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
     zplane <- NA
   }
 
-  dados <- CartesianBehaviour::expdados(dado, dadoz , Xaxi , Yaxi, Zaxi, frames, id, id_col, fps)
+  dados <- CartesianBehaviour::expdados(dado, dadoz , Xaxi , Yaxi, Zaxi, time, frames, id, id_col, fps)
 
   listzones <- CartesianBehaviour::list_zones(dados, Zones, zplane)
   listzones <- CartesianBehaviour::distances_by_frame(listzones)
