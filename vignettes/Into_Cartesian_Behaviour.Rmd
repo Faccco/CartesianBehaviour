@@ -43,7 +43,7 @@ Zonas <- list(ZN)
 rm(Z1, Z2, Z3, Z4, ZN)
 
 #Perform all the mesures
-TRAJ2D <- CartesianBehaviour::Allbasics(Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+TRAJ2D <- CartesianBehaviour::Allbasics(Traj, Xaxi = "x", Yaxi = "y", time = "time", frames = NA,
           Zones = Zonas, threshold = 3, Dist.reg = "point", reg = data.frame(x = 0, y = 0))
 
 #Create the data frame of the distance traveled
@@ -119,7 +119,7 @@ rm(Z1, Z2, Z3, Z4, ZN, i)
 
 #Perform all the mesures
 TRAJS2D  <- CartesianBehaviour::g_Allbasics(TRAJ, Xaxi = "x", Yaxi = "y",
-                        frames = "time", Zones = Zonas,
+                        time = "time", Zones = Zonas,
                         threshold = 3, Dist.reg = "point",
                         reg = data.frame(x = 0, y = 0))
 
