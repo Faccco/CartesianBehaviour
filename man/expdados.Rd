@@ -20,7 +20,7 @@ expdados(
 \arguments{
 \item{dado}{The main data frame containing trajectory data (X and Y coordinates), an identifier of the subject and a frame or time information.}
 
-\item{dadoz}{A second data frame that contains the z coordinates and the other identifiers.}
+\item{dadoz}{A second data frame that contains the z coordinates and the other identifiers. The first frame of data must be the same as the dado input.}
 
 \item{Xaxi}{A character input representing the column in dado presenting the X coordinates.}
 

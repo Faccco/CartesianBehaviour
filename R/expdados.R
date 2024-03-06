@@ -1,7 +1,7 @@
 #' Function to standardize a trajectory
 #'
 #' @param dado The main data frame containing trajectory data (X and Y coordinates), an identifier of the subject and a frame or time information.
-#' @param dadoz A second data frame that contains the z coordinates and the other identifiers.
+#' @param dadoz A second data frame that contains the z coordinates and the other identifiers. The first frame of data must be the same as the dado input.
 #' @param Xaxi A character input representing the column in dado presenting the X coordinates.
 #' @param Yaxi A character input representing the column in dado presenting the Y coordinates.
 #' @param Zaxi Can be the name of the column in dadoz, or a vector of the type double (numeric) containing the Z coordinates.
@@ -80,6 +80,8 @@ expdados <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
     }else{
       dadoz <- dplyr::filter(dadoz, dadoz[,id_col] == id)
     }
+
+    #ajuste para seleção entre frames e tempos
 
     dadoz$frame <- (dadoz$frame - base::min(dadoz$frame)) + base::min(dados$frame)
     dados <- dplyr::distinct(dados, frame, .keep_all = TRUE)
