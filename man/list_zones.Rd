@@ -29,7 +29,7 @@ Traj <- TrajGenerate(2000, random = TRUE, stepLength = .12,
                      angularErrorSd = .8, fps = 30)
 
 #Export the trajectory.
-TrajEXP <- expdados(Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+TrajEXP <- expdados(Traj, Xaxi = "x", Yaxi = "y", time = "time",
                     id = 1, fps = 30)
 
 #Create the zones of interest
@@ -50,7 +50,7 @@ TRAJ2D <- list_zones(TrajEXP, Zones = Zonas)
 #Export the trajectory considering
 #the Y axis both as Y and Z axis at the same time.
 #TrajEXP3D <- expdados(Traj, Xaxi = "x", Yaxi = "y", Zaxi = "y",
-#                       frames = "time", id = 2, fps = 30)
+#                       time = "time", id = 2, fps = 30)
 #
 #Create your own zones, if you don't know how, go ?Zone_int
 #zons3D <- Zones_int(nzonesd2 = 2, nzonesd3 = 4,
