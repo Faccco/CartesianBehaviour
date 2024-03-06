@@ -4,7 +4,7 @@
 #'
 #' @param list_zones The output of \link[CartesianBehaviour]{list_zones}.
 #'
-#' @return A list of splitted data frames added with the distances by each frame.
+#' @return A list of splitted data frame added with the distances by each frame.
 #' @export distances_by_frame
 #'
 #' @examples #Creating an trajectory using the function from the package trajr
@@ -15,7 +15,7 @@
 #'
 #' #Export the trajectory.
 #' TrajEXP <- expdados(Traj, Xaxi = "x", Yaxi = "y",
-#'                     frames = "time", id = 1, fps = 30)
+#'                     time = "time", id = 1, fps = 30)
 #'
 #' #Create the zones of interest
 #' #Normally by Zones_in() but in this case by code directly
