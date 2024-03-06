@@ -7,10 +7,11 @@
 #' @param Xaxi A character input representing the column in list_subjects presenting the X coordinates.
 #' @param Yaxi A character input representing the column in dado presenting the Y coordinates.
 #' @param Zaxi Can be the name of the column in dadoz, or a vector of the type double (numeric) containing the Z coordinates.
-#' @param frames The column in dados representing frame or time information. If this is the time column set the fps = 1.
+#' @param frames The column in dados representing frame information.
 #' @param id Numeric identifier of the subject.
 #' @param id_col The column in dados that contain the subject identifier of the observations. If there is no identifier column all the data in the data frame will be considered.
 #' @param fps The frame rate or another value to convert the time marker into a desired one.
+#' @param time The column in dados representing time information.
 #'
 #' @return A standardized list of data frames
 #' @export
@@ -28,13 +29,13 @@
 #'
 #' #Export the trajectory.
 #' TrajEXP <- g_expdados(Traj, Xaxi = "x", Yaxi = "y",
-#'                       frames = "time", id = 1, fps = 30)
+#'                       time = "time", id = 1, fps = 30)
 #' #View(TrajEXP)
 g_expdados <- function(list_subjects, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
-                       Zaxi = NA, frames = "frame", id = 1, id_col = NULL, fps = 30){
+                       Zaxi = NA, time = NA, frames = NA, id = 1, id_col = NULL, fps = 30){
   if(base::is.null(dadoz)){
     list_subjects <- base::lapply(list_subjects, FUN = expdados, dadoz = dadoz, Xaxi = Xaxi,
-                                  Yaxi = Yaxi, Zaxi = Zaxi, frames = frames, id = id,
+                                  Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames, id = id,
                                   id_col = id_col, fps = fps)
     list_subjects
   }else if(base::typeof(dadoz) == "list"){
@@ -42,7 +43,7 @@ g_expdados <- function(list_subjects, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm"
       for (i in 1:base::length(dadoz)) {
 
         list_subjectsz <- CartesianBehaviour::expdados(list_subjects[[i]], dadoz = dadoz[[i]], Xaxi = Xaxi,
-                                   Yaxi = Yaxi, Zaxi = Zaxi, frames = frames, id = id,
+                                   Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames, id = id,
                                    id_col = id_col, fps = fps)
 
         list_subjects[[i]] <- list_subjectsz
