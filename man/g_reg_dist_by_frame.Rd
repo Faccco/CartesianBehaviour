@@ -58,7 +58,7 @@ Traj[[i]] <- TrajGenerate(5000, random = TRUE, stepLength = .12,
                      angularErrorSd = .8, fps = 30)
 }
 #Export the trajectory.
-TrajEXP <- g_expdados(Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+TrajEXP <- g_expdados(Traj, Xaxi = "x", Yaxi = "y", time = "time",
                    id = 1, fps = 30)
 
 #Create the zones of interest
