@@ -34,7 +34,7 @@
 #' for (i in 1:length(TRAJ)) {
 #'
 #'   TRAJS <- Allbasics(TRAJ[[i]], dadoz = NULL, Xaxi = "x", Yaxi = "y",
-#'                      frames = "time", Zones = Zonas, threshold = 3,
+#'                      time = "time", Zones = Zonas, threshold = 3,
 #'                      Dist.reg = "point", reg = data.frame(x = 0, y = 0))
 #'   Tj <- list(TRAJS)
 #'   TRAJS2D <- append(TRAJS2D, Tj)

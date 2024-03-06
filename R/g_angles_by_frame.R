@@ -20,7 +20,7 @@
 #'
 #' #Export the trajectory.
 #' TrajEXP <- g_expdados(Traj, Xaxi = "x", Yaxi = "y",
-#'                      frames = "time", id = 1, fps = 30)
+#'                      time = "time", id = 1, fps = 30)
 #'
 #' #Create the zones of interest
 #' #Can be manually drawn but setting Zones = NA,
