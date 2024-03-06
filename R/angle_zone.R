@@ -4,7 +4,7 @@
 #'
 #' @param list_zones The output of \link[CartesianBehaviour]{angles_by_frame} or \link[CartesianBehaviour]{Allbasics}.
 #'
-#' @return A data frames with the absolute turn angle for the total trajectory and by zones.
+#' @return A data frame with the absolute turn angle for the total trajectory and by zones.
 #' @export
 #'
 #' @examples #Creating an trajectory using the function from the package trajr
@@ -26,7 +26,7 @@
 #' rm(Z1, Z2, Z3, Z4, ZN, i)
 #'
 #' #Perform all the measures
-#' TRAJ2D <- Allbasics(Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+#' TRAJ2D <- Allbasics(Traj, Xaxi = "x", Yaxi = "y", time = "time",
 #'                     Zones = Zonas, threshold = 3,
 #'                     Dist.reg = "point",
 #'                     reg = data.frame(x = 0, y = 0))
