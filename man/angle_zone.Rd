@@ -10,7 +10,7 @@ angle_zone(list_zones)
 \item{list_zones}{The output of \link[CartesianBehaviour]{angles_by_frame} or \link[CartesianBehaviour]{Allbasics}.}
 }
 \value{
-A data frames with the absolute turn angle for the total trajectory and by zones.
+A data frame with the absolute turn angle for the total trajectory and by zones.
 }
 \description{
 The absolute turn angle of one subject for the complete trajectory and the zones of interest.
@@ -35,7 +35,7 @@ Zonas <- list(ZN)
 rm(Z1, Z2, Z3, Z4, ZN, i)
 
 #Perform all the measures
-TRAJ2D <- Allbasics(Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+TRAJ2D <- Allbasics(Traj, Xaxi = "x", Yaxi = "y", time = "time",
                     Zones = Zonas, threshold = 3,
                     Dist.reg = "point",
                     reg = data.frame(x = 0, y = 0))

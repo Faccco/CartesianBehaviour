@@ -10,7 +10,8 @@ expdados(
   Xaxi = "x_cm",
   Yaxi = "y_cm",
   Zaxi = NA,
-  frames = "frame",
+  frames = NA,
+  time = NA,
   id = 1,
   id_col = NULL,
   fps = 30
@@ -27,7 +28,9 @@ expdados(
 
 \item{Zaxi}{Can be the name of the column in dadoz, or a vector of the type double (numeric) containing the Z coordinates.}
 
-\item{frames}{The column in dados representing frame or time information. If this is the time column set the fps = 1.}
+\item{frames}{The column in dados representing frame information.}
+
+\item{time}{The column in dados representing time information.}
 
 \item{id}{Numeric identifier of the subject.}
 
@@ -49,12 +52,12 @@ Traj <- TrajGenerate(2000, random = TRUE, stepLength = .12,
                      angularErrorSd = .8, fps = 30)
 #Export the trajectory
 TrajEXP <- expdados(Traj, Xaxi = "x", Yaxi = "y",
-                    frames = "time", id = 1, fps = 30)
+                    time = "time", id = 1, fps = 30)
 #View(TrajEXP)
 
 #Export the trajectory considering
 #the Y axis both as Y and Z axis at the same time
 TrajEXP2 <- expdados(Traj, Xaxi = "x", Yaxi = "y", Zaxi = "y",
-                     frames = "time", id = 2, fps = 30)
+                     time = "time", id = 2, fps = 30)
 #View(TrajEXP2)
 }

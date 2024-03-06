@@ -10,7 +10,7 @@ distances_by_frame(list_zones)
 \item{list_zones}{The output of \link[CartesianBehaviour]{list_zones}.}
 }
 \value{
-A list of splitted data frames added with the distances by each frame.
+A list of splitted data frame added with the distances by each frame.
 }
 \description{
 Add the \link[CartesianBehaviour]{list_zones} output with the distances traveled each frame, necessary to perform: \link[CartesianBehaviour]{speeds_by_frame}, \link[CartesianBehaviour]{dist_zone} and \link[CartesianBehaviour]{g_dist_zone}.
@@ -24,7 +24,7 @@ Traj <- TrajGenerate(2000, random = TRUE, stepLength = .12,
 
 #Export the trajectory.
 TrajEXP <- expdados(Traj, Xaxi = "x", Yaxi = "y",
-                    frames = "time", id = 1, fps = 30)
+                    time = "time", id = 1, fps = 30)
 
 #Create the zones of interest
 #Normally by Zones_in() but in this case by code directly

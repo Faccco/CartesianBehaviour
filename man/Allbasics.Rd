@@ -10,7 +10,8 @@ Allbasics(
   Xaxi = "x_cm",
   Yaxi = "y_cm",
   Zaxi = NA,
-  frames = "frame",
+  time = NA,
+  frames = NA,
   fps = 30,
   id_col = NULL,
   id = 1,
@@ -41,6 +42,8 @@ Allbasics(
 \item{Yaxi}{Column name in the dado data frame that includes the Y coordinates.}
 
 \item{Zaxi}{Column name in dadoz, or a vector of the type double  containing the z observations.}
+
+\item{time}{The column name in dados representing the time stamp in integers.}
 
 \item{frames}{Column name in dados representing the frame number or time stamp.}
 
@@ -106,7 +109,7 @@ Zonas <- list(ZN)
 rm(Z1, Z2, Z3, Z4, ZN)
 
 #Perform all the measures
-TRAJ2D <- Allbasics(dado = Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+TRAJ2D <- Allbasics(dado = Traj, Xaxi = "x", Yaxi = "y", time = "time",
                     Zones = Zonas, threshold = 3, Dist.reg = "point",
                     reg = data.frame(x = 0, y = 0))
 #View(TRAJ2D)
