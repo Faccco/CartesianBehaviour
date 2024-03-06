@@ -10,7 +10,8 @@ g_expdados(
   Xaxi = "x_cm",
   Yaxi = "y_cm",
   Zaxi = NA,
-  frames = "frame",
+  time = NA,
+  frames = NA,
   id = 1,
   id_col = NULL,
   fps = 30
@@ -27,7 +28,9 @@ g_expdados(
 
 \item{Zaxi}{Can be the name of the column in dadoz, or a vector of the type double (numeric) containing the Z coordinates.}
 
-\item{frames}{The column in dados representing frame or time information. If this is the time column set the fps = 1.}
+\item{time}{The column in dados representing time information.}
+
+\item{frames}{The column in dados representing frame information.}
 
 \item{id}{Numeric identifier of the subject.}
 
@@ -55,6 +58,6 @@ Traj[[i]] <- TrajGenerate(5000, random = TRUE, stepLength = .01,
 
 #Export the trajectory.
 TrajEXP <- g_expdados(Traj, Xaxi = "x", Yaxi = "y",
-                      frames = "time", id = 1, fps = 30)
+                      time = "time", id = 1, fps = 30)
 #View(TrajEXP)
 }

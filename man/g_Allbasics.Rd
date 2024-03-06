@@ -10,7 +10,8 @@ g_Allbasics(
   Xaxi = "x_cm",
   Yaxi = "y_cm",
   Zaxi = NA,
-  frames = "frame",
+  time = NA,
+  frames = NA,
   fps = 30,
   id_col = NULL,
   id = 1,
@@ -42,7 +43,9 @@ g_Allbasics(
 
 \item{Zaxi}{Column name in list_dadoz, or a vector of the type double  containing the z observations.}
 
-\item{frames}{Column name in list_subjects representing the frame number or time stamp.}
+\item{time}{The column name in list_subjects representing the time stamp.}
+
+\item{frames}{Column name in list_subjects representing the frame number.}
 
 \item{fps}{The frame rate or another value to convert the time marker into a desired one (the value of time will be divided by this).}
 
@@ -111,7 +114,7 @@ rm(Z1, Z2, Z3, Z4, ZN)
 
 #Perform all the mesures
 TRAJ2D <- g_Allbasics(list_subjects = Traj, Xaxi = "x",
-                      Yaxi = "y", frames = "time", Zones = Zonas,
+                      Yaxi = "y", time = "time", Zones = Zonas,
                       threshold = 3, Dist.reg = "point",
                       reg = data.frame(x = 0, y = 0))
 }
