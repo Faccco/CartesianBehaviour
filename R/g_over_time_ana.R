@@ -29,7 +29,7 @@
 #' rm(Z1, Z2, Z3, Z4, ZN)
 #'
 #' #Perform all the measures
-#' TRAJ2D <- g_Allbasics(Traj, Xaxi = "x", Yaxi = "y", frames = "time",
+#' TRAJ2D <- g_Allbasics(Traj, Xaxi = "x", Yaxi = "y", time = "time",
 #'                     Zones = Zonas, threshold = 3,
 #'                     Dist.reg = "point", reg = data.frame(x = 0, y = 0))
 #'
