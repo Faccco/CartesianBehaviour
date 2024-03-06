@@ -28,7 +28,7 @@
 #'
 #' #Perform all the measures
 #' TRAJS2D <- g_Allbasics(TRAJ, Xaxi = "x",
-#'                      Yaxi = "y", frames = "time", Zones = Zonas,
+#'                      Yaxi = "y", time = "time", Zones = Zonas,
 #'                      threshold = 3, Dist.reg = "point",
 #'                      reg = data.frame(x = 0, y = 0))
 #'
