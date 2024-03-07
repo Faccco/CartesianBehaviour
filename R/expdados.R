@@ -63,6 +63,8 @@ expdados <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
     times <- (frame-frame[1])/fps
   }
 
+  times <- (frame-frame[1])/fps
+
   DateTime <- base::as.POSIXct(times, origin = "2023-01-01", tz = "UTC")
   ID <- base::c(base::rep(id, times = base::nrow(dados)))
   row <- 1:base::nrow(dados)
@@ -114,6 +116,9 @@ expdados <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
       frame <- base::as.numeric(dados[,base::which(base::colnames(dados)== frame)])
       times <- (frame-frame[1])/fps
     }
+
+    times <- (frame-frame[1])/fps
+
     DateTime <- base::as.POSIXct(times, origin = "2023-01-01", tz = "UTC")
     ID <- base::c(base::rep(id, times = base::nrow(dados)))
     row <- 1:base::nrow(dados)
