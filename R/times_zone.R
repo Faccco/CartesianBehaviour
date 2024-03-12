@@ -40,11 +40,7 @@ AA <- base::data.frame()
 list_zone <- list_zones[[1]]
 for (i in 1:base::length(list_zone)){
 
-  if(i != base::length(list_zone)){
-    Ani <- list_zone[[i]]
-  }else{
-    Ani <- base::list(list_zone[[i]])
-  }
+  Ani <- list_zone[[i]]
 
   spentime <- base::sum(base::as.numeric(TIME_ZONE(Ani), time.scale = time.scale))
   meantime <- base::mean(base::as.numeric(TIME_ZONE(Ani), time.scale = time.scale))

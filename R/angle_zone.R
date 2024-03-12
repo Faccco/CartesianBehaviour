@@ -41,9 +41,6 @@ angle_zone <- function(list_zones){
 
     zoneangle <- list_zone[[i]]
     BB <- base::data.frame()
-    if(i == base::length(list_zone)){
-      zoneangle <- base::list(list_zone[[i]])
-    }
 
     if(base::length(zoneangle) > 0){
       for (j in 1:base::length(zoneangle)) {

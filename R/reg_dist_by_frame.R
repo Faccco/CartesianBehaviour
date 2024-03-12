@@ -117,21 +117,21 @@ reg_dist_by_frame <- function(list_sample, Dist.reg = "plan", reg = "NOT", faceZ
   }
 Ani <- list_sample[[1]]
 Anima <- Ani[[base::length(Ani)]]
-Anima <- Anima[[1]]
+Animal <- Anima[[1]]
   if(rara == 1){
 
-    Anima$distPoint <- point_dist_by_frame(Anima, AA)
+    Animal$distPoint <- point_dist_by_frame(www = Animal , AA)
 
   }else if(rara == 2){
 
-    Anima$distLine <- line_dist_by_frame(Anima = Anima, b = AA[1,], c = AA[2,])
+    Animal$distLine <- line_dist_by_frame(Anima = Animal, b = AA[1,], c = AA[2,])
 
     }else if(rara == 3){
 
-      Anima$distPlane <- plane_dist_by_frame(x1 = AA[1,1], y1 = AA[1,2], z1 = AA[1,3], x2 = AA[2,1], y2 = AA[2,2], z2 = AA[2,3], x3 = AA[3,1], y3 = AA[3,2], z3 = AA[3,3], Anima = Anima)
+      Animal$distPlane <- plane_dist_by_frame(x1 = AA[1,1], y1 = AA[1,2], z1 = AA[1,3], x2 = AA[2,1], y2 = AA[2,2], z2 = AA[2,3], x3 = AA[3,1], y3 = AA[3,2], z3 = AA[3,3], Anima = Animal)
 
   }
-Anima -> Anima[[1]]
+Animal -> Anima[[1]]
 Anima -> Ani[[base::length(Ani)]]
 Ani -> list_sample[[1]]
 

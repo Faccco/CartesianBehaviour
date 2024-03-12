@@ -70,7 +70,7 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
     zplane <- NA
   }
 
-  dados <- CartesianBehaviour::expdados(dado, dadoz , Xaxi , Yaxi, Zaxi, time, frames, id, id_col, fps)
+  dados <- CartesianBehaviour::expdados(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames, id = id, id_col = id_col, fps = fps)
 
   listzones <- CartesianBehaviour::list_zones(dados, Zones, zplane)
   listzones <- CartesianBehaviour::distances_by_frame(listzones)

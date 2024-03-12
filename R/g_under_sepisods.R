@@ -50,7 +50,13 @@
 #'   #View(Group.Under.Speed.Episods)
 g_under_sepisods <- function(list_group, time_threshold = 5){
   list_groups <- list_group[[1]]
-  UsGrou <- data.table::rbindlist(base::lapply(list_group, under_sepisods, time_threshold = time_threshold), use.names=TRUE)
+  list_groupa <- list()
+  for (i in 1:base::length(list_group)) {
+    list_groupi <-  list_group[[i]]
+    list_groupa[[i]] <- under_sepisods(list_groupi, time_threshold = time_threshold)
+  }
+
+  UsGrou <- data.table::rbindlist(list_groupa, use.names=TRUE)
   UsGrou$Animal <- base::c(base::rep(base::paste("Animal_", 1:base::length(list_group), sep = ""), each = base::length(list_groups[[1]])))
   UsGrou$Zone <- base::c(base::rep(base::c(base::paste("Zone_", 1:(base::length(list_groups[[1]])-1), sep = ""), "Total"), times = base::length(list_group)))
   UsGrou

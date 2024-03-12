@@ -36,11 +36,9 @@ MMspeed <- function(list_zones){
   list_zone <- list_zones[[1]]
   AA <- base::data.frame()
   for (i in 1:base::length(list_zone)) {
-    if(i != base::length(list_zone)){
+
       Ani <- list_zone[[i]]
-    }else{
-      Ani <- base::list(list_zone[[i]])
-    }
+
     if(base::length(Ani) > 0){
       testspeed <- base::c(dplyr::bind_rows(Ani)$Speeds)
       if(base::length(testspeed) > 1 && FALSE %in% base::is.na(testspeed)){

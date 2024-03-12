@@ -39,10 +39,6 @@ dist_zone <- function(list_zones){
   for (i in 1:base::length(list_zone)) {
     zonedist <- list_zone[[i]]
 
-    if(i == base::length(list_zone)){
-      zonedist <- base::list(list_zone[[i]])
-    }
-
     if(base::length(zonedist) > 0){
       BB <- base::data.frame()
       for (j in 1:base::length(zonedist)) {

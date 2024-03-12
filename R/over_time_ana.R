@@ -43,7 +43,7 @@ over_time_ana <- function(list_zones, time.ana = "mean", type = "point", time_th
 
   list_zone <- list_zones[[1]]
   pt <- list_zone[[base::length(list_zone)]]
-  time <- pt[[1]]$time
+  time <- pt[[1]]$times
 
   if(mode == 1){
     analiVec <- base::as.numeric(pt[[1]]$distPoint)
@@ -62,7 +62,7 @@ over_time_ana <- function(list_zones, time.ana = "mean", type = "point", time_th
     }else if(mode == 8){
       final <- data.frame()
       j = 0
-      while (j < (base::round(base::max(time), digits = t.rounding))){
+      while (j < (base::round(base::max(time, na.rm = T), digits = t.rounding))){
         analiDF <- pt[[1]]
         max <- j+time.ana
         min <- j
@@ -104,15 +104,15 @@ if(mode != 8){
     final
   }else{
     i = 0
-    while (i < (base::round(base::max(time), digits = t.rounding))){
+    while (i < (base::round(base::max(time, na.rm = T), digits = t.rounding))){
       max <- i+time.ana
       min <- i
       subdf <- analiDF[analiDF$time<=max,]
       subdf <- subdf[subdf$time>i,]
       if(mode %in% c(4,6)){
-      mean <- base::c(base::sum(subdf$analiVec), base::max(subdf$time))
+      mean <- base::c(base::sum(subdf$analiVec), base::max(subdf$time, na.rm = T))
       }else{
-        mean <- base::c(base::mean(subdf$analiVec), base::max(subdf$time))
+        mean <- base::c(base::mean(subdf$analiVec), base::max(subdf$time, na.rm = T))
       }
       AA <- base::rbind(AA, mean)
       i <- i+time.ana

@@ -46,11 +46,8 @@ under_sepisods <- function(list_zones, time_threshold = 1, MOD = "USER"){
 
   for (j in 1:base::length(list_zone)) {
 
-    if(j != base::length(list_zone)){
       www <- list_zone[[j]]
-    }else{
-      www <- base::list(list_zone[[j]])
-    }
+
     AA <- base::data.frame()
 
     if(base::length(www) > 0){
