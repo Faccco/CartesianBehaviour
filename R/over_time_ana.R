@@ -7,6 +7,7 @@
 #' @param type The desired analysis to be done over time. Can be "point", "line", "plane", "distance", "speed", "angle", "meandering", "underspeed".
 #' @param time_threshold The time threshold if the analysis is the under speed episodes.
 #' @param t.rounding The number of decimals to be considered in the time analysis if you are using a decimal measure of time.
+#' @param time.length The maximum time to be analysed
 #'
 #' @return A data frame with distance the means for each time section to a defined endpoint of interest.
 #' @export over_time_ana
@@ -37,54 +38,70 @@
 #' #the distance to a point of interest of the subject
 #' Distance.Point <- over_time_ana(TRAJ2D, time.ana = 2, type = "point")
 #' #View(Distance.Point)
-over_time_ana <- function(list_zones, time.ana = "mean", type = "point", time_threshold = 1, t.rounding = 0){
+over_time_ana <- function(list_zones, time.ana = "mean", time.length = 10, type = "point", time_threshold = 1, t.rounding = 0){
   mode <- base::as.numeric(base::pmatch(type,
                                          base::c("point", "line", "plane", "distance", "speed", "angle", "meandering", "underspeed")))
 
   list_zone <- list_zones[[1]]
   pt <- list_zone[[base::length(list_zone)]]
-  time <- pt[[1]]$times
+
+  if(base::is.na(time.length)){
+    time <- pt[[1]]$times
+  }else{
+    time <- pt[[1]]$times[pt[[1]]$times < time.length]
+    if(base::max(time, na.rm = T) < time.length){
+      time <- base::append(time, time.length)
+      }
+    if(time.length %in% pt[[1]]$times){
+      lastime <- base::c(base::rep(NA, times = 4), time.length, base::rep(NA, times = (base::ncol(pt[[1]]) - 5)))
+      pt[[1]] <- base::rbind(pt[[1]][pt[[1]]$times < time.length,], lastime, pt[[1]][pt[[1]]$times > time.length,])
+    }
+  }
 
   if(mode == 1){
-    analiVec <- base::as.numeric(pt[[1]]$distPoint)
+    analiVec <- base::as.numeric(pt[[1]]$distPoint[pt[[1]]$times < time.length])
   }else if(mode == 2){
-    analiVec <- base::as.numeric(pt[[1]]$distLine)
+    analiVec <- base::as.numeric(pt[[1]]$distLine[pt[[1]]$times < time.length])
   }else if(mode == 3){
-    analiVec <- base::as.numeric(pt[[1]]$distPlane)
+    analiVec <- base::as.numeric(pt[[1]]$distPlane[pt[[1]]$times < time.length])
   }else if(mode == 4){
-    analiVec <- base::as.numeric(pt[[1]]$dist)
+    analiVec <- base::as.numeric(pt[[1]]$dist[pt[[1]]$times < time.length])
   }else if(mode == 5){
-    analiVec <- base::as.numeric(pt[[1]]$Speeds)
+    analiVec <- base::as.numeric(pt[[1]]$Speeds[pt[[1]]$times < time.length])
   }else if(mode == 6){
-    analiVec <- base::as.numeric(pt[[1]]$Angles)
-    }else if(mode == 7){
-      analiVec <- base::as.numeric(pt[[1]]$Meandering)
-    }else if(mode == 8){
-      final <- data.frame()
-      j = 0
-      while (j < (base::round(base::max(time, na.rm = T), digits = t.rounding))){
-        analiDF <- pt[[1]]
-        max <- j+time.ana
-        min <- j
-        analiDF$time <- analiDF$time - min(analiDF$time)
-        subdf <- analiDF[analiDF$time <= max,]
-        subdf <- subdf[subdf$time > j,]
+    analiVec <- base::as.numeric(pt[[1]]$Angles[pt[[1]]$times < time.length])
+  }else if(mode == 7){
+    analiVec <- base::as.numeric(pt[[1]]$Meandering[pt[[1]]$times < time.length])
+  }else if(mode == 8){
+    final <- data.frame()
+    j = 0
+    while (j < time.length){
+      analiDF <- pt[[1]]
+      max <- j+time.ana
+      min <- j
+      analiDF$time <- analiDF$time - base::min(analiDF$time, na.rm = T)
+      subdf <- analiDF[analiDF$time <= max,]
+      subdf <- subdf[subdf$time > j,]
 
-        ABC <- list(list(subdf))
-        XX <- under_sepisods(ABC, time_threshold = time_threshold, MOD = "DF")
+      ABC <- list(list(subdf))
+      XX <- under_sepisods(ABC, time_threshold = time_threshold, MOD = "DF")
 
-        final <- base::rbind(final, XX)
-        j <- j+time.ana
-      }
+      final <- base::rbind(final, XX)
+      j <- j+time.ana
     }
+  }
 
 if(mode != 8){
+  comp <- base::max(base::length(analiVec), base::length(time))
+  base::length(analiVec) <- comp
+  base::length(time) <- comp
+
   analiDF <- base::data.frame(base::cbind(analiVec,time))
 
   AA <- base::c(0,0)
   if(time.ana == "mean"){
 
-    final <- base::data.frame(base::mean(analiVec))
+    final <- base::data.frame(base::mean(analiVec, na.rm = T))
 
     if(mode == 1){
       base::colnames(final) <-  base::c("Total mean distance to point")
@@ -109,10 +126,16 @@ if(mode != 8){
       min <- i
       subdf <- analiDF[analiDF$time<=max,]
       subdf <- subdf[subdf$time>i,]
-      if(mode %in% c(4,6)){
-      mean <- base::c(base::sum(subdf$analiVec), base::max(subdf$time, na.rm = T))
+      zeze <- base::suppressWarnings(base::max(subdf$time, na.rm = T))
+      if(base::abs(zeze) != Inf){
+        if(mode %in% c(4,6)){
+          mean <- base::c(base::sum(subdf$analiVec, na.rm = T), base::max(subdf$time, na.rm = T))
+        }else{
+          mean <- base::c(base::mean(subdf$analiVec, na.rm = T), base::max(subdf$time, na.rm = T))
+        }
       }else{
-        mean <- base::c(base::mean(subdf$analiVec), base::max(subdf$time, na.rm = T))
+        base::print(base::paste("Compleat lost of track in ", i, " time to ", i+time.ana))
+        mean <- c(NA,NA)
       }
       AA <- base::rbind(AA, mean)
       i <- i+time.ana
@@ -143,5 +166,7 @@ if(mode != 8){
     }
 
     base::rownames(final) <- base::c((1:base::nrow(final))*time.ana)
+    final[is.na(final)] <- NA
+    final <- base::data.frame(final)
     final
   }

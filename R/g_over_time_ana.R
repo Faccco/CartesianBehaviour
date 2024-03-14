@@ -37,14 +37,16 @@
 #' #the distance to a point of interest of the subject
 #' Distance.Point <- g_over_time_ana(TRAJ2D, time.ana = 2, type = "point")
 #' #View(Distance.Point)
-g_over_time_ana <- function(list_group, time.ana = "mean", type = "point", time_threshold = 1, t.rounding = 0){
+g_over_time_ana <- function(list_group, time.ana = "mean", type = "point", time_threshold = 1, time.length = NA, t.rounding = 0){
   list_groups <- list_group[[1]]
-  OVtime <- over_time_ana(list_group[[1]], time.ana = time.ana, type = type,
-                          time_threshold = time_threshold, t.rounding = t.rounding)
+  OVtime <- over_time_ana(list_zones = list_group[[1]], time.ana = time.ana, type = type,
+                          time_threshold = time_threshold, t.rounding = t.rounding,
+                          time.length = time.length)
   OVtm <- base::data.frame(OVtime[,1])
   for (i in 2:base::length(list_group)) {
   OVtime <- over_time_ana(list_group[[i]], time.ana = time.ana, type = type,
-                          time_threshold = time_threshold, t.rounding = t.rounding)
+                          time_threshold = time_threshold, t.rounding = t.rounding,
+                          time.length = time.length)
   OVtm <- base::cbind(OVtm, OVtime[,1])
   OVtm <- base::data.frame(OVtm)
 }
