@@ -83,7 +83,7 @@ meandering_zone <- function(angle_zon, dist_zone, dist_reescale = 1){
       www
     }
 
-    namezon <- base::c(base::paste("Meandering in Zone", 1:(base::ncol(www)-1), sep=""), "Total meandering")
+    namezon <- base::c(base::paste("Meandering in Zone", 1:(base::ncol(www)-1), sep=""), "Mean meandering")
     base::colnames(www) <- namezon
     www$Animal <- base::c(paste("Animal_", 1:base::nrow(www), sep = ""))
     www

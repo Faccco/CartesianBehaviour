@@ -7,6 +7,7 @@
 over_time_ana(
   list_zones,
   time.ana = "mean",
+  time.length = 10,
   type = "point",
   time_threshold = 1,
   t.rounding = 0
@@ -16,6 +17,8 @@ over_time_ana(
 \item{list_zones}{The output of \link[CartesianBehaviour]{Allbasics} or the corresponding desired by frame analysis.}
 
 \item{time.ana}{The time frames to be analyzed as means. "mean" to analyze the total mean (i.e. the mean measure considering each frame).}
+
+\item{time.length}{The maximum time to be analysed}
 
 \item{type}{The desired analysis to be done over time. Can be "point", "line", "plane", "distance", "speed", "angle", "meandering", "underspeed".}
 

@@ -9,6 +9,7 @@ g_over_time_ana(
   time.ana = "mean",
   type = "point",
   time_threshold = 1,
+  time.length = NA,
   t.rounding = 0
 )
 }
