@@ -26,6 +26,7 @@ Allbasics(
   maxZ = NA,
   minZ = NA,
   npts = 4,
+  deg = T,
   Circ_Arena = F,
   threshold = 5,
   Dist.reg = NA,
@@ -74,6 +75,8 @@ Allbasics(
 \item{minZ}{If considered, the minimum coordinate in the Z-axis defining the arena}
 
 \item{npts}{Number of vertices that define the polygon representing the zone of interest.}
+
+\item{deg}{Convert into degrees. If FALSE will generate the angles in radians.}
 
 \item{Circ_Arena}{A logical indicating whether do draw a circular boundary to position the point . FALSE by default.}
 

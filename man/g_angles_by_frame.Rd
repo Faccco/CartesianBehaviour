@@ -4,10 +4,12 @@
 \alias{g_angles_by_frame}
 \title{Sample turn angle by each frame}
 \usage{
-g_angles_by_frame(list_zones)
+g_angles_by_frame(list_zones, deg = T)
 }
 \arguments{
 \item{list_zones}{The output of \link[CartesianBehaviour]{g_list_zones} or multiple \link[CartesianBehaviour]{list_zones} outputs listed.}
+
+\item{deg}{Convert into degrees. If FALSE will generate the angles in radians.}
 }
 \value{
 A list containing lists of splitted trajectory data frames with the turn angle by each frame.
