@@ -27,6 +27,7 @@
 #' @param Zones A data frame crated by \link[CartesianBehaviour]{Zones_int} containing the zones of interest. NA by  default to create the zones within the analysis.
 #' @param reg A data frame with the x,y (and optionally z) axis. "NOT" by default to pin the point/line/plane manually in the plot tab.
 #' @param time The column name in dados representing the time stamp in integers.
+#' @param deg Convert into degrees. If FALSE will generate the angles in radians.
 #'
 #' @return A list containing the data frames witch the subject was inside the zone of interest and all to perform all the 1 subject measures of this package.
 #' @export Allbasics
@@ -56,7 +57,7 @@
 #' #View(TRAJ2D)
 Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = NA, time = NA, frames = NA, fps = 30,
                       id_col = NULL, id = 1, Zones = NA, n.zonesd2, n.zonesd3 = 0, faceZ = 0,
-                      maxX = NA, minX = NA, maxY = NA, minY = NA, maxZ = NA, minZ = NA, npts = 4, Circ_Arena = F, threshold = 5,
+                      maxX = NA, minX = NA, maxY = NA, minY = NA, maxZ = NA, minZ = NA, npts = 4, deg = T,  Circ_Arena = F, threshold = 5,
                       Dist.reg = NA, reg = "NOT"){
   if(T %in% base::is.na(Zones)){
     Zones <- CartesianBehaviour::Zones_int(n.zonesd2, n.zonesd3, faceZ, maxX, minX, maxY, minY, maxZ, minZ, npts, Circ_Arena)
@@ -79,7 +80,7 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
 
   if(base::is.na(zplane)){
 
-    listzones <- CartesianBehaviour::angles_by_frame(listzones)
+    listzones <- CartesianBehaviour::angles_by_frame(listzones, deg = deg)
     listzones <- CartesianBehaviour::meandering_by_frame(listzones)
 
   }

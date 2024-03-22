@@ -36,6 +36,7 @@
 #' TRAJ2D <- angles_by_frame(TRAJ2D)
 angles_by_frame <- function(list_zones, deg = TRUE){
   list_zone <- list_zones[[1]]
+
   for (i in 1:base::length(list_zone)) {
 
     baba <- list_zone[[i]]
@@ -43,13 +44,19 @@ angles_by_frame <- function(list_zones, deg = TRUE){
     if(base::length(baba) > 0){
       for (j in 1:base::length(baba)) {
 
-        Angles <- base::atan2((baba[[j]]$y - dplyr::lag(baba[[j]]$y)), baba[[j]]$x - dplyr::lag(baba[[j]]$x))
 
+        Angles <- base::Arg(baba[[j]]$polar)
+        Angles <- base::as.numeric(base::diff(Angles, lag = 1))
+        Angles <- base::append(NA,Angles)
+
+        jojo <- base::which(Angles <= -base::pi)
+        Angles[jojo] <- Angles[jojo] + 2 * base::pi
+        jojo <- base::which(Angles > base::pi)
+        Angles[jojo] <- Angles[jojo] - 2 * base::pi
+        Angles
         if(deg){
           Angles <- Angles * 57.2958
         }
-
-        Angles <- base::abs(dplyr::lead(Angles)) - base::abs(Angles)
 
         baba[[j]]$Angles <- Angles
         baba

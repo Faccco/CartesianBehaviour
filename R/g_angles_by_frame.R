@@ -3,6 +3,7 @@
 #' Add the \link[CartesianBehaviour]{g_list_zones} output or multiple \link[CartesianBehaviour]{list_zones} outputs listed with the turn angle by each frame, necessary to calculate: \link[CartesianBehaviour]{meandering_by_frame}, \link[CartesianBehaviour]{meandering_zone}, \link[CartesianBehaviour]{angle_zone} and \link[CartesianBehaviour]{g_angle_zone}.
 #'
 #' @param list_zones The output of \link[CartesianBehaviour]{g_list_zones} or multiple \link[CartesianBehaviour]{list_zones} outputs listed.
+#' @param deg Convert into degrees. If FALSE will generate the angles in radians.
 #'
 #' @return A list containing lists of splitted trajectory data frames with the turn angle by each frame.
 #' @export
@@ -39,10 +40,10 @@
 #' #Add the turn angles by each frame
 #' TRAJ2D <- g_angles_by_frame(TRAJ2D)
 #' #View(TRAJ2D[[1]][[1]][["Total"]][[1]])
-g_angles_by_frame <- function(list_zones){
+g_angles_by_frame <- function(list_zones, deg = T){
   for (i in 1:base::length(list_zones)) {
     list_zone <- list_zones[[i]]
-    list_zone <- angles_by_frame(list_zone)
+    list_zone <- angles_by_frame(list_zone, deg = deg)
     list_zones[[i]] <- list_zone
   }
   list_zones
