@@ -40,6 +40,6 @@ g_MMspeed <- function(list_group){
   list_groups <- list_group[[1]]
   MMGrou <- data.table::rbindlist(base::lapply(list_group, MMspeed), use.names=TRUE)
   MMGrou$Animal <- base::c(base::rep(base::paste("Animal_", 1:base::length(list_group), sep = ""), each = base::length(list_groups[[1]])))
-  MMGrou$Zone <- base::c(base::rep(base::c(base::paste("Zone_", 1:(base::length(list_groups[[1]])-1), sep = ""), "Total"), times = base::length(list_group)))
+  MMGrou$Zone <- base::c(base::rep(base::c(base::paste("Zone", 1:(base::length(list_groups[[1]])-1), sep = ""), "Total"), times = base::length(list_group)))
   MMGrou
 }

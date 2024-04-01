@@ -58,6 +58,6 @@ g_under_sepisods <- function(list_group, time_threshold = 5){
 
   UsGrou <- data.table::rbindlist(list_groupa, use.names=TRUE)
   UsGrou$Animal <- base::c(base::rep(base::paste("Animal_", 1:base::length(list_group), sep = ""), each = base::length(list_groups[[1]])))
-  UsGrou$Zone <- base::c(base::rep(base::c(base::paste("Zone_", 1:(base::length(list_groups[[1]])-1), sep = ""), "Total"), times = base::length(list_group)))
+  UsGrou$Zone <- base::c(base::rep(base::c(base::paste("Zone", 1:(base::length(list_groups[[1]])-1), sep = ""), "Total"), times = base::length(list_group)))
   UsGrou
 }

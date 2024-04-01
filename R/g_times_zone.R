@@ -43,6 +43,6 @@ g_times_zone <- function(list_group, tm.scale = "sec"){
   list_groups <- list_group[[1]]
   TmGrou <- data.table::rbindlist(base::lapply(list_group, times_zone, time.scale = tm.scale), use.names=TRUE)
   TmGrou$Animal <- base::c(base::rep(base::paste("Animal_", 1:base::length(list_group), sep = ""), each = base::length(list_groups[[1]])))
-  TmGrou$Zone <- base::c(base::rep(base::c(base::paste("Zone_", 1:(base::length(list_groups[[1]])-1), sep = ""), "Total"), times = base::length(list_group)))
+  TmGrou$Zone <- base::c(base::rep(base::c(base::paste("Zone", 1:(base::length(list_groups[[1]])-1), sep = ""), "Total"), times = base::length(list_group)))
   TmGrou
 }
