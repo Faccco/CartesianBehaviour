@@ -5,6 +5,7 @@
 #' @param type The desired analysis to be done over time. Can be "point", "line", "plane", "distance", "speed", "angle", "meandering", "underspeed".
 #' @param time_threshold The time threshold if the analysis is the under speed episodes.
 #' @param t.rounding The number of decimals to be considered in the time analysis if you are using a decimal measure of time.
+#' @param time.length The maximum time to be analysed
 #'
 #' @return A data frame with distance the means for each time section to a defined endpoint of interest.
 #' @export g_over_time_ana

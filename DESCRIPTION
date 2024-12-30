@@ -29,3 +29,4 @@ Suggests:
     tidyverse,
     trajr
 VignetteBuilder: knitr
+Depends: R (>= 3.5.0)

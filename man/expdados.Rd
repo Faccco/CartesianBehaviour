@@ -14,7 +14,11 @@ expdados(
   time = NA,
   id = 1,
   id_col = NULL,
-  fps = 30
+  fps = 30,
+  Gtype = "unique",
+  center = NA,
+  head = NA,
+  tail = NA
 )
 }
 \arguments{
@@ -37,12 +41,23 @@ expdados(
 \item{id_col}{The column in dados that contain the subject identifier of the observations. If there is no identifier column all the data in the data frame will be considered.}
 
 \item{fps}{The frame rate or another value to convert the time marker into a desired one.}
+
+\item{Gtype}{If you have any kind of of 3 point tracking select a type of data input. "unique" by default. See more in description.}
+
+\item{center}{The name of the center point input.}
+
+\item{head}{The name of the head columns or a data frame containing it.}
+
+\item{tail}{The name of the tail columns or a data frame containing it.}
 }
 \value{
 A standardize data frame. Note that if Z is a vector its length must be the same as of the X and Y.
 }
 \description{
-Function to standardize a trajectory
+To standardize data from 1 or multiple data frames. For the 3 point positions of interest to future mesure bodi arch angles you have to chose between
+"1Lcol3Point" - which is a dataframe with 1 column names and is just straight forward name  the column identifier in the head, center, tail parameters.
+"2Lcol3Point" - optimized for DeepLabCut outputs, which have 3 lines of columns, 1 with a generated unique name, and 2 lines for defining the body parts and the type of coordinates (X, Y, Z), separately. in this case it will paste the "X/Y" + _ + "Body part column name" to perform the anlisis.
+"multiDF3Point" - If you have the body parts spread in 3 different data frames. note that the center must be in the dados input.
 }
 \examples{
 #Create an trajectory using the function from the package trajr

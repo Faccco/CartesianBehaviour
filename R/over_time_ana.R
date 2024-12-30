@@ -40,7 +40,7 @@
 #' #View(Distance.Point)
 over_time_ana <- function(list_zones, time.ana = "mean", time.length = 10, type = "point", time_threshold = 1, t.rounding = 0){
   mode <- base::as.numeric(base::pmatch(type,
-                                         base::c("point", "line", "plane", "distance", "speed", "angle", "meandering", "underspeed")))
+                                         base::c("point", "line", "plane", "distance", "speed", "angle", "meandering", "underspeed", "arch")))
 
   list_zone <- list_zones[[1]]
   pt <- list_zone[[base::length(list_zone)]]
@@ -72,6 +72,9 @@ over_time_ana <- function(list_zones, time.ana = "mean", time.length = 10, type 
     analiVec <- base::as.numeric(pt[[1]]$Angles[pt[[1]]$times < time.length])
   }else if(mode == 7){
     analiVec <- base::as.numeric(pt[[1]]$Meandering[pt[[1]]$times < time.length])
+  }else if(mode == 9){
+    analiVec <- base::as.numeric(pt[[1]]$arch1[pt[[1]]$times < time.length])
+    analiVec <- base::data.frame(analiVec, (base::as.numeric(pt[[1]]$arch2[pt[[1]]$times < time.length])))
   }else if(mode == 8){
     final <- data.frame()
     j = 0
@@ -92,16 +95,28 @@ over_time_ana <- function(list_zones, time.ana = "mean", time.length = 10, type 
   }
 
 if(mode != 8){
-  comp <- base::max(base::length(analiVec), base::length(time))
-  base::length(analiVec) <- comp
-  base::length(time) <- comp
-
-  analiDF <- base::data.frame(base::cbind(analiVec,time))
+  if(mode == 9){
+    comp <- base::max(base::nrow(analiVec), base::length(time))
+    analiVec <- analiVec[1:comp,]
+    base::length(time) <- comp
+    analiDF <- base::data.frame(base::cbind(analiVec,time))
+  }else{
+    comp <- base::max(base::length(analiVec), base::length(time))
+    base::length(analiVec) <- comp
+    base::length(time) <- comp
+    analiDF <- base::data.frame(base::cbind(analiVec,time))
+  }
 
   AA <- base::c(0,0)
   if(time.ana == "mean"){
 
-    final <- base::data.frame(base::mean(analiVec, na.rm = T))
+    if(mode == 9){
+      final <- base::data.frame(base::t(base::apply(analiVec, 2, mean, na.rm = T)))
+    }else{
+      final <- base::data.frame(base::mean(analiVec, na.rm = T))
+    }
+
+
 
     if(mode == 1){
       base::colnames(final) <-  base::c("Total mean distance to point")
@@ -117,7 +132,10 @@ if(mode != 8){
       base::colnames(final) <-  base::c("Mean turn angle")
     }else if(mode == 7){
       base::colnames(final) <-  base::c("Mean meandering")
+    }else if(mode == 9){
+      base::colnames(final) <-  base::c("Mean arch 1", "Mean arch 2")
     }
+
     final
   }else{
     i = 0
@@ -128,16 +146,22 @@ if(mode != 8){
       subdf <- subdf[subdf$time>i,]
       zeze <- base::suppressWarnings(base::max(subdf$time, na.rm = T))
       if(base::abs(zeze) != Inf){
-        if(mode %in% c(4,6)){
+        if(mode %in% base::c(4,6)){
           mean <- base::c(base::sum(subdf$analiVec, na.rm = T), base::max(subdf$time, na.rm = T))
         }else{
-          mean <- base::c(base::mean(subdf$analiVec, na.rm = T), base::max(subdf$time, na.rm = T))
+
+          if(mode == 9){
+            mean <- base::c(base::t(apply(subdf[,1:2], 2, mean, na.rm = T)), base::max(subdf$time, na.rm = T))
+          }else{
+            mean <- base::c(base::mean(subdf$analiVec, na.rm = T), base::max(subdf$time, na.rm = T))
+          }
+
         }
       }else{
         base::print(base::paste("Compleat lost of track in ", i, " time to ", i+time.ana))
-        mean <- c(NA,NA)
+        mean <- base::c(NA,NA)
       }
-      AA <- base::rbind(AA, mean)
+      base::suppressWarnings(AA <- base::rbind(AA, mean))
       i <- i+time.ana
     }
     final <- base::data.frame(AA[2:base::nrow(AA),])
@@ -157,12 +181,15 @@ if(mode != 8){
       base::colnames(final) <- base::c("Total Turn Angle", "Time")
     }else if(mode == 7){
       base::colnames(final) <- base::c("Mean Meandering", "Time")
+    }else if(mode == 9){
+      base::colnames(final) <- base::c("Mean Arch 1", "Mean Arch 2", "Time")
     }
   }else if(mode == 8){
     if(time.ana == "mean"){
       stop("Just use under_sepisods function", call. = FALSE)
     }
-      base::colnames(final) <- base::c("Total Time Under", "Number of Episodes", "Mean Time under Speed")
+    final$Time <- base::c((1:base::nrow(final))*time.ana)
+    base::colnames(final) <- base::c("Total Time Under", "Number of Episodes", "Mean Time under Speed", "Time")
     }
 
     base::rownames(final) <- base::c((1:base::nrow(final))*time.ana)

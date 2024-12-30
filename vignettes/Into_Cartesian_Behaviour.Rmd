@@ -15,8 +15,7 @@ library(tidyverse)
 
 ## Briefing
 <br>
-This package aims to simplify the way to deal with Cartesian data and turn it into movement and maybe behavioral evidence.
-Note that this package don't track nor generate the trajectories, for this we recommend [TrackR](https://swarm-lab.github.io/trackR/) and [trajr](https://github.com/JimMcL/trajr) respectively. In this first version you must create zones of interest even if the only zone of interest is the whole tracking area. Also the  outputs can be computed as over time data if any interest[.](https://www.youtube.com/watch?v=JVyPSIiqgwk)
+This package aims to simplify the way to deal with Cartesian data and turn it into movement and maybe behavioral evidence. Note that this package don't track nor generate the trajectories, for this we recommend [TrackR](https://swarm-lab.github.io/trackR/), [trajr](https://github.com/JimMcL/trajr) and [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut). In this first version you must create zones of interest even if the only zone of interest is the whole tracking area. Also the outputs can be computed as over time data if any interest[.](https://www.youtube.com/watch?v=JVyPSIiqgwk)
 <br>
 
 ## Basic usage
@@ -43,8 +42,11 @@ Zonas <- list(ZN)
 rm(Z1, Z2, Z3, Z4, ZN)
 
 #Perform all the mesures
-TRAJ2D <- CartesianBehaviour::Allbasics(Traj, Xaxi = "x", Yaxi = "y", time = "time", frames = NA,
-          Zones = Zonas, threshold = 3, Dist.reg = "point", reg = data.frame(x = 0, y = 0))
+TRAJ2D <- CartesianBehaviour::Allbasics(Traj, Xaxi = "x", Yaxi = "y", 
+                                        frames = "time", 
+                                        Zones = Zonas, threshold = 3, 
+                                        Dist.reg = "point", 
+                                        reg = data.frame(x = 0, y = 0))
 
 #Create the data frame of the distance traveled
 Distance.Zones <- data.frame(t(CartesianBehaviour::dist_zone(TRAJ2D)))
@@ -119,7 +121,7 @@ rm(Z1, Z2, Z3, Z4, ZN, i)
 
 #Perform all the mesures
 TRAJS2D  <- CartesianBehaviour::g_Allbasics(TRAJ, Xaxi = "x", Yaxi = "y",
-                        time = "time", Zones = Zonas,
+                        frames = "time", Zones = Zonas,
                         threshold = 3, Dist.reg = "point",
                         reg = data.frame(x = 0, y = 0))
 

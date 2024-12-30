@@ -30,7 +30,12 @@ Allbasics(
   Circ_Arena = F,
   threshold = 5,
   Dist.reg = NA,
-  reg = "NOT"
+  reg = "NOT",
+  bodyarch = NA,
+  center = NA,
+  head = NA,
+  tail = NA,
+  sidesum = F
 )
 }
 \arguments{
@@ -85,6 +90,16 @@ Allbasics(
 \item{Dist.reg}{Logical, if TRUE will add the distance to a point of interest in the data frame.}
 
 \item{reg}{A data frame with the x,y (and optionally z) axis. "NOT" by default to pin the point/line/plane manually in the plot tab.}
+
+\item{bodyarch}{If you have any kind of of 3 point tracking select a type of data input. "unique" by default. See more in \link[CartesianBehaviour]{expdados} description for Gtype.}
+
+\item{center}{The name of the center point input.}
+
+\item{head}{The name of the head columns or a data frame containing it.}
+
+\item{tail}{The name of the tail columns or a data frame containing it.}
+
+\item{sidesum}{Define if the interest is the absolute angle for each side of the arc of the three points or the minimum and maximum angles. TRUE for minimum and maximum, FALSE by default.}
 }
 \value{
 A list containing the data frames witch the subject was inside the zone of interest and all to perform all the 1 subject measures of this package.

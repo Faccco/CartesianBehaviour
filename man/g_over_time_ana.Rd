@@ -22,6 +22,8 @@ g_over_time_ana(
 
 \item{time_threshold}{The time threshold if the analysis is the under speed episodes.}
 
+\item{time.length}{The maximum time to be analysed}
+
 \item{t.rounding}{The number of decimals to be considered in the time analysis if you are using a decimal measure of time.}
 }
 \value{

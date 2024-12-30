@@ -28,6 +28,11 @@
 #' @param reg A data frame with the x,y (and optionally z) axis. "NOT" by default to pin the point/line/plane manually in the plot tab.
 #' @param time The column name in dados representing the time stamp in integers.
 #' @param deg Convert into degrees. If FALSE will generate the angles in radians.
+#' @param bodyarch If you have any kind of of 3 point tracking select a type of data input. "unique" by default. See more in \link[CartesianBehaviour]{expdados} description for Gtype.
+#' @param center The name of the center point input.
+#' @param head The name of the head columns or a data frame containing it.
+#' @param tail The name of the tail columns or a data frame containing it.
+#' @param sidesum Define if the interest is the absolute angle for each side of the arc of the three points or the minimum and maximum angles. TRUE for minimum and maximum, FALSE by default.
 #'
 #' @return A list containing the data frames witch the subject was inside the zone of interest and all to perform all the 1 subject measures of this package.
 #' @export Allbasics
@@ -58,7 +63,7 @@
 Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = NA, time = NA, frames = NA, fps = 30,
                       id_col = NULL, id = 1, Zones = NA, n.zonesd2, n.zonesd3 = 0, faceZ = 0,
                       maxX = NA, minX = NA, maxY = NA, minY = NA, maxZ = NA, minZ = NA, npts = 4, deg = T,  Circ_Arena = F, threshold = 5,
-                      Dist.reg = NA, reg = "NOT"){
+                      Dist.reg = NA, reg = "NOT", bodyarch = NA, center = NA, head = NA, tail = NA, sidesum = F){
   if(T %in% base::is.na(Zones)){
     Zones <- CartesianBehaviour::Zones_int(n.zonesd2, n.zonesd3, faceZ, maxX, minX, maxY, minY, maxZ, minZ, npts, Circ_Arena)
   }
@@ -71,7 +76,27 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
     zplane <- NA
   }
 
-  dados <- CartesianBehaviour::expdados(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames, id = id, id_col = id_col, fps = fps)
+  if(!(is.na(bodyarch))){
+    dados <- CartesianBehaviour::expdados(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi,
+    Zaxi = Zaxi, frames = frames, time = time, id = id, id_col = id_col,
+    fps = fps, Gtype = bodyarch, center = center, head = head, tail = tail)
+
+    dados <- body_arch_by_frame(list_zones = dados, sidesum = sidesum)
+
+    if(base::grepl("2", bodyarch)){
+
+      Xaxi <- paste(Xaxi, center, sep = "_")
+      Yaxi <- paste(Yaxi, center, sep = "_")
+
+    }
+
+  }else{
+
+    dados <- CartesianBehaviour::expdados(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi,
+    Zaxi = Zaxi, time = time, frames = frames, id = id, id_col = id_col,
+    fps = fps, Gtype = "unique", center = center, head = head, tail = tail)
+
+  }
 
   listzones <- CartesianBehaviour::list_zones(dados, Zones, zplane)
   listzones <- CartesianBehaviour::distances_by_frame(listzones)
