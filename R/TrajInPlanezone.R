@@ -26,11 +26,11 @@
 #' #View(Teste3)
 TrajInPlanezone <- function (Track, Zone, plane) {
   if (!requireNamespace("sp", quietly = TRUE)) {
-    stop("Package \"sp\" is needed for the TrajInPolygon function to work. You can install it using install.packages('sp').",
+    stop("Package \"sp\" is needed for the TrajInPlanezone function to work. You can install it using install.packages('sp').",
          call. = FALSE)
   }
   if (!rlang::is_installed("plotrix")) {
-    stop("Package {plotrix} is needed for the TrajInPolygon function to work. You can install it using install.packages('sp').")
+    stop("Package {plotrix} is needed for the TrajInPlanezone function to work. You can install it using install.packages('sp').")
   }
 
 
