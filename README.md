@@ -4,7 +4,7 @@ This project seeks to simplify the conversion of Cartesian data provided from an
 
 Instalation
 ```
-require(devtools)
+library(devtools)
 install_github("Faccco/CartesianBehaviour")
 
 # OR
