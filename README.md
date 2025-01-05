@@ -1,4 +1,8 @@
-# CartesianBehaviour <img src="man/figures/logo.png" align="right" width="120" />
+# CartesianBehaviour - Ponints to behaviour <img src="man/figures/logo.png" align="right" width="120" />
+
+[![R-CMD-check](https://github.com/Faccco/CartesianBehaviour/workflows/R-CMD-check/badge.svg)](https://github.com/Faccco/CartesianBehaviour/actions)
+![CRAN](https://www.r-pkg.org/badges/version/CartesianBehaviour)
+![CRANLOGS](https://cranlogs.r-pkg.org/badges/CartesianBehaviour)
 <br>
 This project seeks to simplify the conversion of Cartesian data provided from any source into behavioral endpoints. It get inspired by the packages <a href="https://swarm-lab.github.io/trackR/">TrackR</a> and <a href="https://github.com/JimMcL/trajr">trajr</a>, check them for options of tracking already implemented.
 
@@ -9,6 +13,6 @@ install_github("Faccco/CartesianBehaviour")
 
 # OR
 
-require(githubinstall)
+library(githubinstall)
 githubinstall("CartesianBehaviour")
 ```
