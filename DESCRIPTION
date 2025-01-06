@@ -17,7 +17,8 @@ Imports:
     dplyr,
     graphics,
     plotrix,
-    utils
+    utils,
+    sp
 Suggests: 
     ggplot2,
     htmlTable,
@@ -25,7 +26,6 @@ Suggests:
     knitr,
     rlang,
     rmarkdown,
-    sp,
     tidyverse,
     trajr
 VignetteBuilder: knitr
