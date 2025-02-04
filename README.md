@@ -1,5 +1,5 @@
 # CartesianBehaviour - Ponints to behaviour <img src="man/figures/logo.png" align="right" width="120" />
-[![R-CMD-check](https://github.com/Faccco/CartesianBehaviour/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Faccco/CartesianBehaviour/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check.yaml](https://github.com/Faccco/CartesianBehaviour/actions/workflows/R-CMD-check.yaml/badge.svg?branch=main)](https://github.com/Faccco/CartesianBehaviour/actions/workflows/R-CMD-check.yaml)
 ![CRAN](https://www.r-pkg.org/badges/version/CartesianBehaviour)
 ![CRANLOGS](https://cranlogs.r-pkg.org/badges/CartesianBehaviour)
 [![DOI](http://dx.doi.org/10.2139/ssrn.5123233)
