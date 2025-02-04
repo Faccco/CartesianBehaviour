@@ -15,5 +15,8 @@ install_github("Faccco/CartesianBehaviour")
 library(githubinstall)
 githubinstall("CartesianBehaviour")
 ```
+<<<<<<< HEAD
 
 :)
+=======
+>>>>>>> 5702fb69764d2522913676e0b75924d700480527
