@@ -10,7 +10,7 @@
 #' @param id Identifier of the subject.
 #' @param fps The frame rate or another value to convert the time marker into a desired one (the value of time will be divided by this).
 #' @param id_col Column name in list_subjects that contain the unique subject identifier.
-#' @param Dist.reg Logical, if TRUE will add the distance to a point of interest in the data frame.
+#' @param Dist.reg Vector, can be the distance to a "point", "line" or "plane". NA for no measure.
 #' @param n.zonesd2 Number of zones for 2D analysis.
 #' @param n.zonesd3 Number of zones for 3D analysis.
 #' @param faceZ The complementary dimension to Z, which will be used to draw the zones. Input 1 for x, 2 for y.
