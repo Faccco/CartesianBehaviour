@@ -79,7 +79,7 @@ g_Allbasics(
 
 \item{threshold}{A defined speed to be tested. Measure of speed depends on the input measure of time and distances in XYZ coordinates.}
 
-\item{Dist.reg}{Logical, if TRUE will add the distance to a point of interest in the data frame.}
+\item{Dist.reg}{Vector, can be the distance to a "point", "line" or "plane". NA for no measure.}
 
 \item{reg}{A data frame with the x,y (and optionally z) axis. NA by default to pin the point manually in the plot tab.}
 }
