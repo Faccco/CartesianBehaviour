@@ -2,7 +2,7 @@ Package: CartesianBehaviour
 Title: Translate Cartesian position in time to movment and behavior data
 Version: 0.0.0.9000
 Authors@R: 
-    person("Falco Luís", "de Souza Gonçalves", , "falcoga93@gmail.com",
+    person("Falco Luís", "de Souza Gonçalves Garcia", , "falcoga93@gmail.com",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0002-7894-6889"))
 Description: With this pakage its possible do analise 2d and 3d data.
     Analize parameters as absolut turn angle, menadering (this two only in

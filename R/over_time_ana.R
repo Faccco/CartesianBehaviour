@@ -147,7 +147,7 @@ if(mode != 8){
       zeze <- base::suppressWarnings(base::max(subdf$time, na.rm = T))
       if(base::abs(zeze) != Inf){
         if(mode %in% base::c(4,6)){
-          mean <- base::c(base::sum(subdf$analiVec, na.rm = T), base::max(subdf$time, na.rm = T))
+          mean <- base::c(base::sum(base::abs(subdf$analiVec), na.rm = T), base::max(subdf$time, na.rm = T))
         }else{
 
           if(mode == 9){
