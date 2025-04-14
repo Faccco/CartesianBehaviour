@@ -112,28 +112,29 @@ if(mode != 8){
 
     if(mode == 9){
       final <- base::data.frame(base::t(base::apply(analiVec, 2, mean, na.rm = T)))
+      final <- cbind(final, time.length)
     }else{
       final <- base::data.frame(base::mean(analiVec, na.rm = T))
+      final <- data.frame(x = final, time = time.length)
     }
 
 
-
     if(mode == 1){
-      base::colnames(final) <-  base::c("Total mean distance to point")
+      base::colnames(final) <-  base::c("Total mean distance to point", "time")
     }else if(mode == 2){
-      base::colnames(final) <-  base::c("Total mean distance to line")
+      base::colnames(final) <-  base::c("Total mean distance to line", "time")
     }else if(mode == 3){
-      base::colnames(final) <-  base::c("Total mean distance to plane")
+      base::colnames(final) <-  base::c("Total mean distance to plane", "time")
     }else if(mode == 4){
-      base::colnames(final) <-  base::c("Mean distance traveled")
+      base::colnames(final) <-  base::c("Mean distance traveled", "time")
     }else if(mode == 5){
-      base::colnames(final) <-  base::c("Mean speed")
+      base::colnames(final) <-  base::c("Mean speed", "time")
     }else if(mode == 6){
-      base::colnames(final) <-  base::c("Mean turn angle")
+      base::colnames(final) <-  base::c("Mean turn angle", "time")
     }else if(mode == 7){
-      base::colnames(final) <-  base::c("Mean meandering")
+      base::colnames(final) <-  base::c("Mean meandering", "time")
     }else if(mode == 9){
-      base::colnames(final) <-  base::c("Mean arch 1", "Mean arch 2")
+      base::colnames(final) <-  base::c("Mean arch 1", "Mean arch 2", "time")
     }
 
     final
