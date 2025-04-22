@@ -11,7 +11,7 @@ Description: With this pakage its possible do analise 2d and 3d data.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     data.table,
     dplyr,
@@ -30,3 +30,4 @@ Suggests:
     trajr
 VignetteBuilder: knitr
 Depends: R (>= 4.1.0)
+LazyData: true

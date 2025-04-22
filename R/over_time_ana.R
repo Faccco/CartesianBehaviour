@@ -113,7 +113,10 @@ if(mode != 8){
     if(mode == 9){
       final <- base::data.frame(base::t(base::apply(analiVec, 2, mean, na.rm = T)))
       final <- cbind(final, time.length)
-    }else{
+    }else if(mode %in% c(4,6)){
+      final <- base::data.frame(base::sum(base::abs(analiVec), na.rm = T))
+      final <- data.frame(x = final, time = time.length)
+      }else{
       final <- base::data.frame(base::mean(analiVec, na.rm = T))
       final <- data.frame(x = final, time = time.length)
     }
@@ -126,11 +129,11 @@ if(mode != 8){
     }else if(mode == 3){
       base::colnames(final) <-  base::c("Total mean distance to plane", "time")
     }else if(mode == 4){
-      base::colnames(final) <-  base::c("Mean distance traveled", "time")
+      base::colnames(final) <-  base::c("Totl distance traveled", "time")
     }else if(mode == 5){
       base::colnames(final) <-  base::c("Mean speed", "time")
     }else if(mode == 6){
-      base::colnames(final) <-  base::c("Mean turn angle", "time")
+      base::colnames(final) <-  base::c("Absolut turn angle", "time")
     }else if(mode == 7){
       base::colnames(final) <-  base::c("Mean meandering", "time")
     }else if(mode == 9){
@@ -192,8 +195,7 @@ if(mode != 8){
     final$Time <- base::c((1:base::nrow(final))*time.ana)
     base::colnames(final) <- base::c("Total Time Under", "Number of Episodes", "Mean Time under Speed", "Time")
     }
-
-    base::rownames(final) <- base::c((1:base::nrow(final))*time.ana)
+    if(time.ana!="mean"){base::rownames(final) <- base::c((1:base::nrow(final))*time.ana)}
     final[is.na(final)] <- NA
     final <- base::data.frame(final)
     final
