@@ -7,21 +7,21 @@
 #'   \item{y}{Y position (pixels or mm)}
 #' }
 #'
-#' @format A list of 52 data frames
+#' @format A list of 52 data frames Ethovision for Short‐fin(1:25) and Leopard(26:52) strains
 #' @source Laboratory zebrafish tracking experiment
 "Ethovision"
 
-#' Tracking positions from ToxTrac for Short‐fin(1:) and Leopard(X:) strains
+#' Tracking positions from ANY-maze for Short‐fin(1:25) and Leopard(26:52) strains
 #'
 #' @format A list of 52 data frames with columns \code{time}, \code{x}, \code{y}
 "ANY_maze"
 
-#' Tracking positions from ToxTrac for Short‐fin strain
+#' Tracking positions from ToxTrac for Short‐fin(1:25) and Leopard(26:52) strains
 #'
 #' @format A list of 47 data frames with columns \code{time}, \code{x}, \code{y}
 "ToxTrac"
 
-#' Tracking positions from ToxTrac for Short‐fin strain
+#' Tracking positions from TrackR for Short‐fin(1:21) and Leopard(22:47) strains
 #'
 #' @format A list of 50 data frames with columns \code{time}, \code{x}, \code{y}
 "TrackR"
