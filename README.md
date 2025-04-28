@@ -9,8 +9,8 @@ This project seeks to simplify the conversion of Cartesian tabular data provided
 The staring point was to measure zebrafish (_Danio rerio_) behavior within zones of interest.
 Future updates aim to:
  - Process data without zones (Speed improvement) [SHORT TERM]
- - Implement an shiny app [MEDIUM TERM]
- - Integrate with an proper tracking app [LONG TERM]
+ - Implement a shiny app [MEDIUM TERM]
+ - Integrate with a proper tracking app [LONG TERM]
 
 ## Instalation
 ```

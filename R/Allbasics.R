@@ -122,6 +122,6 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
 
     listzones <- CartesianBehaviour::reg_dist_by_frame(list_sample = listzones, Dist.reg = "plane", reg, faceZ, minX, maxX, minY, maxY, minZ, maxZ, Circ_Arena)
   }
-
+  base::print("Behavioral analysis performed")
   listzones
 }

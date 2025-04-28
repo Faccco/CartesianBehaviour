@@ -158,7 +158,7 @@ if(gtype != 1){
 }
 
   if(base::is.na(Zaxi) & base::is.null(dadoz)) {
-    base::print("2D suported analysis")
+    base::print("2D suported analyses")
 
 
     if(gtype != 1){
@@ -172,7 +172,7 @@ if(gtype != 1){
     }
 
   }else if(!base::is.null(dadoz) & base::typeof(Zaxi) == "character"){
-    base::print("3D suported analysis with 2 data frames")
+    base::print("3D suported analyses with 2 data frames")
 
     if(base::is.null(id_col)){
       dadoz <- base::data.frame(dadoz)
@@ -232,7 +232,7 @@ if(gtype != 1){
 
 
   }else if(base::typeof(Zaxi) == "character"){
-    base::print("3D suported analysis with 1 data frame")
+    base::print("3D suported analyses with 1 data frame")
 
     z <- base::as.numeric(dados[,base::which(base::colnames(dados)== Zaxi)])
 
@@ -250,7 +250,7 @@ if(gtype != 1){
     dados
 
   }else if(base::typeof(Zaxi) == "double"){
-    base::print("3D suported analysis with 1 data frame and a Z vector of positions")
+    base::print("3D suported analyses with 1 data frame and a Z vector of positions")
 
     if(base::length(Zaxi) == base::length(x)){
       z <- base::as.numeric(Zaxi)

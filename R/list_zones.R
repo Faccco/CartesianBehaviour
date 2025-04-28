@@ -81,7 +81,7 @@ list_zones <- function(dado, Zones, Zplane = NA, remove2D = FALSE){
         nonames <- base::data.frame(base::rbind(nonames, base::paste(i,j, sep = ".")))
         final
       }
-    }else{base::print("2D analisis performed")}
+    }else{base::print("2D zone analyses performed")}
   }
 
   if(!base::is.na(Zplane)){
