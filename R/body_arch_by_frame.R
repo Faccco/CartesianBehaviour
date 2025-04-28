@@ -1,6 +1,6 @@
 #' Arch between three points
 #'
-#' @param list_zones  A data frame or list from \link[CartesianBehaviour]{expdados} or \link[CartesianBehaviour]{list_zones}, which contains x and y for the three points of interest.
+#' @param list_zones  A data frame or list from \link[CartesianBehaviour]{standardized_trj} or \link[CartesianBehaviour]{list_zones}, which contains x and y for the three points of interest.
 #' @param sidesum Define if the interest is the absolute angle for each side of the arc of the three points or the minimum and maximum angles. TRUE for minimum and maximum, FALSE by default.
 #'
 #' @return A data frame or lit with the body arch.

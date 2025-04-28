@@ -39,7 +39,7 @@ B_outputs <- function(){
     "speeds_by_frame() & threshold_speed_by_frame()",
     "list_zones()",
     "meandering_zone()",
-    "expdados"),
+    "standardized_trj"),
   Over_time = c(
     "over_time_ana(type = 'angle')",
     "over_time_ana(type = 'distance')",

@@ -1,4 +1,4 @@
-#' Tracking positions from EthoVision for Leopard strain
+#' Tracking positions from zebrafish (Danio rerio) in the Novel Tank Diving Test (NTT) of four tracking software
 #'
 #' A named list of data frames, each with columns:
 #' \describe{
@@ -11,7 +11,7 @@
 #' @source Laboratory zebrafish tracking experiment
 "Ethovision"
 
-#' Tracking positions from ToxTrac for Short‐fin strain
+#' Tracking positions from ToxTrac for Short‐fin(1:) and Leopard(X:) strains
 #'
 #' @format A list of 52 data frames with columns \code{time}, \code{x}, \code{y}
 "ANY_maze"

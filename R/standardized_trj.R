@@ -22,7 +22,7 @@
 #'
 #'
 #' @return A standardize data frame. Note that if Z is a vector its length must be the same as of the X and Y.
-#' @export expdados
+#' @export standardized_trj
 #'
 #'
 #' @examples #Create an trajectory using the function from the package trajr
@@ -31,16 +31,16 @@
 #' Traj <- TrajGenerate(2000, random = TRUE, stepLength = .12,
 #'                      angularErrorSd = .8, fps = 30)
 #' #Export the trajectory
-#' TrajEXP <- expdados(Traj, Xaxi = "x", Yaxi = "y",
+#' TrajEXP <- standardized_trj(Traj, Xaxi = "x", Yaxi = "y",
 #'                     time = "time", id = 1, fps = 30)
 #' #View(TrajEXP)
 #'
 #' #Export the trajectory considering
 #' #the Y axis both as Y and Z axis at the same time
-#' TrajEXP2 <- expdados(Traj, Xaxi = "x", Yaxi = "y", Zaxi = "y",
+#' TrajEXP2 <- standardized_trj(Traj, Xaxi = "x", Yaxi = "y", Zaxi = "y",
 #'                      time = "time", id = 2, fps = 30)
 #' #View(TrajEXP2)
-expdados <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
+standardized_trj <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
                      Zaxi = NA, frames = NA, time = NA, id = 1, id_col = NULL,
                      fps = 30, Gtype = "unique", center = NA, head = NA, tail = NA){
 

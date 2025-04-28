@@ -1,6 +1,6 @@
 #' Split the trajectory into zones of interest
 #'
-#' @param dado A data frame crated by \link[CartesianBehaviour]{expdados} containing the positions and time of an subject.
+#' @param dado A data frame crated by \link[CartesianBehaviour]{standardized_trj} containing the positions and time of an subject.
 #' @param Zones A data frame crated by \link[CartesianBehaviour]{Zones_int} containing the zones of interest.
 #' @param Zplane The complementary axis used in \link[CartesianBehaviour]{Zones_int}. Input can be "xz", "zx", "yz" or "zy".
 #' @param remove2D To remove the 2D zones from the final data. FALSE by default.
@@ -15,7 +15,7 @@
 #'                      angularErrorSd = .8, fps = 30)
 #'
 #' #Export the trajectory.
-#' TrajEXP <- expdados(Traj, Xaxi = "x", Yaxi = "y", time = "time",
+#' TrajEXP <- standardized_trj(Traj, Xaxi = "x", Yaxi = "y", time = "time",
 #'                     id = 1, fps = 30)
 #'
 #' #Create the zones of interest
@@ -35,7 +35,7 @@
 #' #Run the code below only to see a 3D example, almost the same as the 2D
 #' #Export the trajectory considering
 #' #the Y axis both as Y and Z axis at the same time.
-#' #TrajEXP3D <- expdados(Traj, Xaxi = "x", Yaxi = "y", Zaxi = "y",
+#' #TrajEXP3D <- standardized_trj(Traj, Xaxi = "x", Yaxi = "y", Zaxi = "y",
 #' #                       time = "time", id = 2, fps = 30)
 #' #
 #' #Create your own zones, if you don't know how, go ?Zone_int

@@ -28,7 +28,7 @@
 #' @param reg A data frame with the x,y (and optionally z) axis. "NOT" by default to pin the point/line/plane manually in the plot tab.
 #' @param time The column name in dados representing the time stamp in integers.
 #' @param deg Convert into degrees. If FALSE will generate the angles in radians.
-#' @param bodyarch If you have any kind of of 3 point tracking select a type of data input. "unique" by default. See more in \link[CartesianBehaviour]{expdados} description for Gtype.
+#' @param bodyarch If you have any kind of of 3 point tracking select a type of data input. "unique" by default. See more in \link[CartesianBehaviour]{standardized_trj} description for Gtype.
 #' @param center The name of the center point input.
 #' @param head The name of the head columns or a data frame containing it.
 #' @param tail The name of the tail columns or a data frame containing it.
@@ -77,7 +77,7 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
   }
 
   if(!(is.na(bodyarch))){
-    dados <- CartesianBehaviour::expdados(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi,
+    dados <- CartesianBehaviour::standardized_trj(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi,
     Zaxi = Zaxi, frames = frames, time = time, id = id, id_col = id_col,
     fps = fps, Gtype = bodyarch, center = center, head = head, tail = tail)
 
@@ -92,7 +92,7 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
 
   }else{
 
-    dados <- CartesianBehaviour::expdados(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi,
+    dados <- CartesianBehaviour::standardized_trj(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi,
     Zaxi = Zaxi, time = time, frames = frames, id = id, id_col = id_col,
     fps = fps, Gtype = "unique", center = center, head = head, tail = tail)
 

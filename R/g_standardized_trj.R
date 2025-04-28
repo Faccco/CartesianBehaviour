@@ -28,13 +28,13 @@
 #'}
 #'
 #' #Export the trajectory.
-#' TrajEXP <- g_expdados(Traj, Xaxi = "x", Yaxi = "y",
+#' TrajEXP <- g_standardized_trj(Traj, Xaxi = "x", Yaxi = "y",
 #'                       time = "time", id = 1, fps = 30)
 #' #View(TrajEXP)
-g_expdados <- function(list_subjects, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
+g_standardized_trj <- function(list_subjects, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
                        Zaxi = NA, time = NA, frames = NA, id = 1, id_col = NULL, fps = 30){
   if(base::is.null(dadoz)){
-    list_subjects <- base::lapply(list_subjects, FUN = expdados, dadoz = dadoz, Xaxi = Xaxi,
+    list_subjects <- base::lapply(list_subjects, FUN = standardized_trj, dadoz = dadoz, Xaxi = Xaxi,
                                   Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames, id = id,
                                   id_col = id_col, fps = fps)
     list_subjects
@@ -42,7 +42,7 @@ g_expdados <- function(list_subjects, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm"
     if(base::length(list_subjects) == base::length(dadoz)){
       for (i in 1:base::length(dadoz)) {
 
-        list_subjectsz <- CartesianBehaviour::expdados(list_subjects[[i]], dadoz = dadoz[[i]], Xaxi = Xaxi,
+        list_subjectsz <- CartesianBehaviour::standardized_trj(list_subjects[[i]], dadoz = dadoz[[i]], Xaxi = Xaxi,
                                    Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames, id = id,
                                    id_col = id_col, fps = fps)
 

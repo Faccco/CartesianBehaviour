@@ -2,7 +2,7 @@
 #'
 #' This function is just a wrap around \link[CartesianBehaviour]{list_zones} with lapply. Check \link[CartesianBehaviour]{list_zones} for more info.
 #'
-#' @param list_subjects A list of data frames crated by \link[CartesianBehaviour]{g_expdados} or multiple \link[CartesianBehaviour]{expdados} listed containing the positions and time of an subject.
+#' @param list_subjects A list of data frames crated by \link[CartesianBehaviour]{g_standardized_trj} or multiple \link[CartesianBehaviour]{standardized_trj} listed containing the positions and time of an subject.
 #' @param Zones A data frame crated by \link[CartesianBehaviour]{Zones_int} containing the zones of interest.
 #' @param Zplane The complementary axis used in \link[CartesianBehaviour]{Zones_int}. Input can be "xz", "zx", "yz" or "zy".
 #' @param remove2D To remove the 2D zones from the final data. FALSE by default.
@@ -22,7 +22,7 @@
 #'}
 #'
 #' #Export the trajectory.
-#' TrajEXP <- g_expdados(Traj, Xaxi = "x", Yaxi = "y",
+#' TrajEXP <- g_standardized_trj(Traj, Xaxi = "x", Yaxi = "y",
 #'                       frames = "time", id = 1, fps = 30)
 #'
 #' #Create the zones of interest
