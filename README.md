@@ -11,6 +11,20 @@ Future updates aim to:
  - Process data without zones (Speed improvement) [SHORT TERM]
  - Implement a shiny app [MEDIUM TERM]
  - Integrate with a proper tracking app [LONG TERM]
+ 
+ For those interested in another better in some way or another solutions we tested and recommend
+  
+  For tracking:
+  - [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut) (Neural network based)
+  - [TrackR](https://swarm-lab.github.io/trackR/) (Package who inspired this project)
+  For evaluation:
+  - [trajr](https://github.com/JimMcL/trajr) (Some functions are borrowed from this one)
+  - [MoveR](https://github.com/qpetitjean/MoveR)
+  - [celltrackR](https://github.com/ingewortel/celltrackR)
+  For both:
+  - [ToxTrac](https://sourceforge.net/projects/toxtrac/)
+  - [AnimalTA](http://vchiara.eu/index.php/animalta)
+  
 
 ## Instalation
 ```
