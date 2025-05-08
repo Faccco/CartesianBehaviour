@@ -7,7 +7,7 @@
 list_zones(dado, Zones, Zplane = NA, remove2D = FALSE)
 }
 \arguments{
-\item{dado}{A data frame crated by \link[CartesianBehaviour]{expdados} containing the positions and time of an subject.}
+\item{dado}{A data frame crated by \link[CartesianBehaviour]{standardized_trj} containing the positions and time of an subject.}
 
 \item{Zones}{A data frame crated by \link[CartesianBehaviour]{Zones_int} containing the zones of interest.}
 
@@ -29,7 +29,7 @@ Traj <- TrajGenerate(2000, random = TRUE, stepLength = .12,
                      angularErrorSd = .8, fps = 30)
 
 #Export the trajectory.
-TrajEXP <- expdados(Traj, Xaxi = "x", Yaxi = "y", time = "time",
+TrajEXP <- standardized_trj(Traj, Xaxi = "x", Yaxi = "y", time = "time",
                     id = 1, fps = 30)
 
 #Create the zones of interest
@@ -49,7 +49,7 @@ TRAJ2D <- list_zones(TrajEXP, Zones = Zonas)
 #Run the code below only to see a 3D example, almost the same as the 2D
 #Export the trajectory considering
 #the Y axis both as Y and Z axis at the same time.
-#TrajEXP3D <- expdados(Traj, Xaxi = "x", Yaxi = "y", Zaxi = "y",
+#TrajEXP3D <- standardized_trj(Traj, Xaxi = "x", Yaxi = "y", Zaxi = "y",
 #                       time = "time", id = 2, fps = 30)
 #
 #Create your own zones, if you don't know how, go ?Zone_int

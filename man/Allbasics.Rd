@@ -91,7 +91,7 @@ Allbasics(
 
 \item{reg}{A data frame with the x,y (and optionally z) axis. "NOT" by default to pin the point/line/plane manually in the plot tab.}
 
-\item{bodyarch}{If you have any kind of of 3 point tracking select a type of data input. "unique" by default. See more in \link[CartesianBehaviour]{expdados} description for Gtype.}
+\item{bodyarch}{If you have any kind of of 3 point tracking select a type of data input. "unique" by default. See more in \link[CartesianBehaviour]{standardized_trj} description for Gtype.}
 
 \item{center}{The name of the center point input.}
 

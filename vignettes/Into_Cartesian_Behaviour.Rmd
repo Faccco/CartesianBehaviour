@@ -9,10 +9,16 @@ vignette: >
 ---
 
 ``` {r setup, include = FALSE}
+```{r knitr-setup, include=FALSE}
+knitr::opts_chunk$set(
+  cache = TRUE, 
+  cache.path = "cache/"
+)
 
-# Definir mirror CRAN globalmente para garantir que install.packages() funcione ao knit
+
+
 options(repos = c(CRAN = "https://cloud.r-project.org"))
-# Instalar pacotes faltantes, se necessários
+
 pkgs <- c(
   "tidyverse", "knitr", "rmarkdown", "htmlTable",
   "kableExtra", "CartesianBehaviour", "trajr"
@@ -21,7 +27,7 @@ to_install <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly=TRUE)]
 if (length(to_install)) {
   install.packages(to_install, repos = getOption("repos"))
 }
-# Configurações de chunk
+
 knitr::opts_chunk$set(
   collapse = TRUE, comment = "#>",
   fig.width = 7, fig.height = 6.5, fig.align = "center",

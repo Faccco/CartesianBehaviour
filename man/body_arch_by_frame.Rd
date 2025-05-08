@@ -7,7 +7,7 @@
 body_arch_by_frame(list_zones, sidesum = FALSE)
 }
 \arguments{
-\item{list_zones}{A data frame or list from \link[CartesianBehaviour]{expdados} or \link[CartesianBehaviour]{list_zones}, which contains x and y for the three points of interest.}
+\item{list_zones}{A data frame or list from \link[CartesianBehaviour]{standardized_trj} or \link[CartesianBehaviour]{list_zones}, which contains x and y for the three points of interest.}
 
 \item{sidesum}{Define if the interest is the absolute angle for each side of the arc of the three points or the minimum and maximum angles. TRUE for minimum and maximum, FALSE by default.}
 }
