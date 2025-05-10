@@ -85,7 +85,7 @@ Tran
 Vel <- mean_speed_zone(dist_zone = Dist, time_zones = Tm)
 Vel
 ```
-For those interested in another better in some way or another solutions we tested and recommend
+For those interested in another solutions we tested and recommend
 
 For tracking:<br>
   - [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut) (Neural network based)<br>
