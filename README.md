@@ -57,7 +57,7 @@ zones <- list(
 ```
 # Calculate core metrics
 analysis_data <- g_Allbasics(
-  dado = trajectories, # Dataframe with the track
+  list_subjects = trajectories, # Dataframe with the track
   Xaxi = "x", # Name of the x column or a vector with the x positions
   Yaxi = "y", # Name of the y column or a vector with the y positions
   frames = "time", # Name of the frames column or a vector with the frames
