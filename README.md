@@ -36,7 +36,7 @@ zones <- list(
   list(data.frame(
     x = c(-1000, 1000, 1000, -1000),
     y = c(-1000, -1000, 1000, 1000)
-  ))
+  )))
 ```
 
 ### Interactive Zone Definition
