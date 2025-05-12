@@ -78,12 +78,19 @@ analysis_data <- g_Allbasics(
 
 # Extract specific metrics
 distance <- g_dist_zone(analysis_data)
+View(distance)
 turn_angle <- g_angle_zone(analysis_data)
+View(turn_angle)
 max_speed <- g_MMspeed(analysis_data)
+View(max_speed)
 immobility <- g_under_sepisods(analysis_data, time_threshold = 1)
+View(immobility)
 zone_time <- g_times_zone(analysis_data)
+View(zone_time)
 transitions <- g_transitions(analysis_data)
+View(transitions)
 avg_speed <- mean_speed_zone(distance, zone_time)
+View(avg_speed)
 ```
 
 ## Recommended Complementary Tools
@@ -92,7 +99,7 @@ For those interested in another solutions we tested and recommend
 
 For tracking:<br>
   - [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut) (Neural network based)<br>
-  - [TrackR](https://swarm-lab.github.io/trackR/) (Package that inspired this project)<br><br> 
+  - [TrackR](https://swarm-lab.github.io/trackR/) (Package that inspired this project)<br><br>
   For evaluation:<br>
   - [trajr](https://github.com/JimMcL/trajr) (Some functions are borrowed from this one)<br>
   - [MoveR](https://github.com/qpetitjean/MoveR)<br>
