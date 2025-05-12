@@ -19,7 +19,7 @@ install.packages("remotes")
 remotes::install_github("Faccco/CartesianBehaviour")
 ```
 
-##Basic Usage
+## Basic Usage
 Trajectory Generation with trajr
 
 ```
@@ -52,7 +52,7 @@ zones <- list(
 # )
 ```
 
-##Behavioral Analysis
+## Behavioral Analysis
 
 ```
 # Calculate core metrics
@@ -85,7 +85,7 @@ transitions <- g_transitions(analysis_data)
 avg_speed <- mean_speed_zone(distance, zone_time)
 ```
 
-##Recommended Complementary Tools
+## Recommended Complementary Tools
 
 For those interested in another solutions we tested and recommend
 
