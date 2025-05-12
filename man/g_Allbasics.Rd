@@ -6,7 +6,7 @@
 \usage{
 g_Allbasics(
   list_subjects,
-  list_dadoz = NULL,
+  list_dftz = NULL,
   Xaxi = "x_cm",
   Yaxi = "y_cm",
   Zaxi = NA,
@@ -35,13 +35,13 @@ g_Allbasics(
 \arguments{
 \item{list_subjects}{A list of data frames containing tracking information, including X, Y and, optionally, Z coordinates.}
 
-\item{list_dadoz}{A second list of data frames that contains the z observations and other identifiers. Must be the same length of list_subjects.}
+\item{list_dftz}{A second list of data frames that contains the z observations and other identifiers. Must be the same length of list_subjects.}
 
-\item{Xaxi}{Column name in the dado data frame that includes the X coordinates .}
+\item{Xaxi}{Column name in the dft data frame that includes the X coordinates .}
 
-\item{Yaxi}{Column name in the dado data frame that includes the Y coordinates.}
+\item{Yaxi}{Column name in the dft data frame that includes the Y coordinates.}
 
-\item{Zaxi}{Column name in list_dadoz, or a vector of the type double  containing the z observations.}
+\item{Zaxi}{Column name in list_dftz, or a vector of the type double  containing the z observations.}
 
 \item{time}{The column name in list_subjects representing the time stamp.}
 

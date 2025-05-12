@@ -47,7 +47,7 @@ rm(Z1, Z2, Z3, Z4, ZN)
 #Perform all the mesures
 
   #For one subject
-  TRJ <- Allbasics(dado = TRAJ, Xaxi = "x", Yaxi = "y", time = "time",
+  TRJ <- Allbasics(dft = TRAJ, Xaxi = "x", Yaxi = "y", time = "time",
                     Zones = Zonas, threshold = 3, Dist.reg = "point",
                     reg = data.frame(x = 0, y = 0))
 

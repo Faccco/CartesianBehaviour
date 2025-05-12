@@ -4,10 +4,10 @@
 \alias{list_zones}
 \title{Split the trajectory into zones of interest}
 \usage{
-list_zones(dado, Zones, Zplane = NA, remove2D = FALSE)
+list_zones(dft, Zones, Zplane = NA, remove2D = FALSE)
 }
 \arguments{
-\item{dado}{A data frame crated by \link[CartesianBehaviour]{standardized_trj} containing the positions and time of an subject.}
+\item{dft}{A data frame crated by \link[CartesianBehaviour]{standardized_trj} containing the positions and time of an subject.}
 
 \item{Zones}{A data frame crated by \link[CartesianBehaviour]{Zones_int} containing the zones of interest.}
 

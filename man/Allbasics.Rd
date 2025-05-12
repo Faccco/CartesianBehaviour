@@ -5,8 +5,8 @@
 \title{Perform all basic measurements by frame}
 \usage{
 Allbasics(
-  dado,
-  dadoz = NULL,
+  dft,
+  dftz = NULL,
   Xaxi = "x_cm",
   Yaxi = "y_cm",
   Zaxi = NA,
@@ -39,23 +39,23 @@ Allbasics(
 )
 }
 \arguments{
-\item{dado}{A Data Frame containing tracking information, including X, Y and, optionally, Z coordinates.}
+\item{dft}{A Data Frame containing tracking information, including X, Y and, optionally, Z coordinates.}
 
-\item{dadoz}{A second data frame that contains the z observations and other identifiers.}
+\item{dftz}{A second data frame that contains the z observations and other identifiers.}
 
-\item{Xaxi}{Column name in the dado data frame that includes the X coordinates .}
+\item{Xaxi}{Column name in the dft data frame that includes the X coordinates .}
 
-\item{Yaxi}{Column name in the dado data frame that includes the Y coordinates.}
+\item{Yaxi}{Column name in the dft data frame that includes the Y coordinates.}
 
-\item{Zaxi}{Column name in dadoz, or a vector of the type double  containing the z observations.}
+\item{Zaxi}{Column name in dftz, or a vector of the type double  containing the z observations.}
 
-\item{time}{The column name in dados representing the time stamp in integers.}
+\item{time}{The column name in dfts representing the time stamp in integers.}
 
-\item{frames}{Column name in dados representing the frame number or time stamp.}
+\item{frames}{Column name in dfts representing the frame number or time stamp.}
 
 \item{fps}{The frame rate or another value to convert the time marker into a desired one (the value of time will be divided by this).}
 
-\item{id_col}{Column name in dados that contain the unique subject identifier.}
+\item{id_col}{Column name in dfts that contain the unique subject identifier.}
 
 \item{id}{Identifier of the subject.}
 
@@ -127,7 +127,7 @@ Zonas <- list(ZN)
 rm(Z1, Z2, Z3, Z4, ZN)
 
 #Perform all the measures
-TRAJ2D <- Allbasics(dado = Traj, Xaxi = "x", Yaxi = "y", time = "time",
+TRAJ2D <- Allbasics(dft = Traj, Xaxi = "x", Yaxi = "y", time = "time",
                     Zones = Zonas, threshold = 3, Dist.reg = "point",
                     reg = data.frame(x = 0, y = 0))
 #View(TRAJ2D)

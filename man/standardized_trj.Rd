@@ -5,8 +5,8 @@
 \title{Function to standardize a trajectory}
 \usage{
 standardized_trj(
-  dado,
-  dadoz = NULL,
+  dft,
+  dftz = NULL,
   Xaxi = "x_cm",
   Yaxi = "y_cm",
   Zaxi = NA,
@@ -22,23 +22,23 @@ standardized_trj(
 )
 }
 \arguments{
-\item{dado}{The main data frame containing trajectory data (X and Y coordinates), an identifier of the subject and a frame or time information.}
+\item{dft}{The main data frame containing trajectory data (X and Y coordinates), an identifier of the subject and a frame or time information.}
 
-\item{dadoz}{A second data frame that contains the z coordinates and the other identifiers. The first frame of data must be the same as the dado input.}
+\item{dftz}{A second data frame that contains the z coordinates and the other identifiers. The first frame of data must be the same as the dft input.}
 
-\item{Xaxi}{A character input representing the column in dado presenting the X coordinates.}
+\item{Xaxi}{A character input representing the column in dft presenting the X coordinates.}
 
-\item{Yaxi}{A character input representing the column in dado presenting the Y coordinates.}
+\item{Yaxi}{A character input representing the column in dft presenting the Y coordinates.}
 
-\item{Zaxi}{Can be the name of the column in dadoz, or a vector of the type double (numeric) containing the Z coordinates.}
+\item{Zaxi}{Can be the name of the column in dftz, or a vector of the type double (numeric) containing the Z coordinates.}
 
-\item{frames}{The column in dados representing frame information.}
+\item{frames}{The column in dfts representing frame information.}
 
-\item{time}{The column in dados representing time information.}
+\item{time}{The column in dfts representing time information.}
 
 \item{id}{Numeric identifier of the subject.}
 
-\item{id_col}{The column in dados that contain the subject identifier of the observations. If there is no identifier column all the data in the data frame will be considered.}
+\item{id_col}{The column in dfts that contain the subject identifier of the observations. If there is no identifier column all the data in the data frame will be considered.}
 
 \item{fps}{The frame rate or another value to convert the time marker into a desired one.}
 
@@ -57,7 +57,7 @@ A standardize data frame. Note that if Z is a vector its length must be the same
 To standardize data from 1 or multiple data frames. For the 3 point positions of interest to future mesure bodi arch angles you have to chose between
 "1Lcol3Point" - which is a dataframe with 1 column names and is just straight forward name  the column identifier in the head, center, tail parameters.
 "2Lcol3Point" - optimized for DeepLabCut outputs, which have 3 lines of columns, 1 with a generated unique name, and 2 lines for defining the body parts and the type of coordinates (X, Y, Z), separately. in this case it will paste the "X/Y" + _ + "Body part column name" to perform the anlisis.
-"multiDF3Point" - If you have the body parts spread in 3 different data frames. note that the center must be in the dados input.
+"multiDF3Point" - If you have the body parts spread in 3 different data frames. note that the center must be in the dfts input.
 }
 \examples{
 #Create an trajectory using the function from the package trajr

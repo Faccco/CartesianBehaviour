@@ -6,7 +6,7 @@
 \usage{
 g_standardized_trj(
   list_subjects,
-  dadoz = NULL,
+  dftz = NULL,
   Xaxi = "x_cm",
   Yaxi = "y_cm",
   Zaxi = NA,
@@ -20,21 +20,21 @@ g_standardized_trj(
 \arguments{
 \item{list_subjects}{A list containing the main data frame containing trajectory data (X and Y coordinates), an identifier of the subject and a frame or time information.}
 
-\item{dadoz}{A second list that contains the data frames with the z coordinates and the other identifiers.}
+\item{dftz}{A second list that contains the data frames with the z coordinates and the other identifiers.}
 
 \item{Xaxi}{A character input representing the column in list_subjects presenting the X coordinates.}
 
-\item{Yaxi}{A character input representing the column in dado presenting the Y coordinates.}
+\item{Yaxi}{A character input representing the column in dft presenting the Y coordinates.}
 
-\item{Zaxi}{Can be the name of the column in dadoz, or a vector of the type double (numeric) containing the Z coordinates.}
+\item{Zaxi}{Can be the name of the column in dftz, or a vector of the type double (numeric) containing the Z coordinates.}
 
-\item{time}{The column in dados representing time information.}
+\item{time}{The column in dfts representing time information.}
 
-\item{frames}{The column in dados representing frame information.}
+\item{frames}{The column in dfts representing frame information.}
 
 \item{id}{Numeric identifier of the subject.}
 
-\item{id_col}{The column in dados that contain the subject identifier of the observations. If there is no identifier column all the data in the data frame will be considered.}
+\item{id_col}{The column in dfts that contain the subject identifier of the observations. If there is no identifier column all the data in the data frame will be considered.}
 
 \item{fps}{The frame rate or another value to convert the time marker into a desired one.}
 }
