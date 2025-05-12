@@ -92,7 +92,7 @@ For those interested in another solutions we tested and recommend
 
 For tracking:<br>
   - [DeepLabCut](https://github.com/DeepLabCut/DeepLabCut) (Neural network based)<br>
-  - [TrackR](https://swarm-lab.github.io/trackR/) (Package who inspired this project)<br><br> 
+  - [TrackR](https://swarm-lab.github.io/trackR/) (Package that inspired this project)<br><br> 
   For evaluation:<br>
   - [trajr](https://github.com/JimMcL/trajr) (Some functions are borrowed from this one)<br>
   - [MoveR](https://github.com/qpetitjean/MoveR)<br>
