@@ -3,10 +3,10 @@
 #' @param list_subjects A list of data frames containing tracking information, including X, Y and, optionally, Z coordinates.
 #' @param frames Column name in list_subjects representing the frame number.
 #' @param threshold A defined speed to be tested. Measure of speed depends on the input measure of time and distances in XYZ coordinates.
-#' @param list_dadoz A second list of data frames that contains the z observations and other identifiers. Must be the same length of list_subjects.
-#' @param Xaxi Column name in the dado data frame that includes the X coordinates .
-#' @param Yaxi Column name in the dado data frame that includes the Y coordinates.
-#' @param Zaxi Column name in list_dadoz, or a vector of the type double  containing the z observations.
+#' @param list_dftz A second list of data frames that contains the z observations and other identifiers. Must be the same length of list_subjects.
+#' @param Xaxi Column name in the dft data frame that includes the X coordinates .
+#' @param Yaxi Column name in the dft data frame that includes the Y coordinates.
+#' @param Zaxi Column name in list_dftz, or a vector of the type double  containing the z observations.
 #' @param id Identifier of the subject.
 #' @param fps The frame rate or another value to convert the time marker into a desired one (the value of time will be divided by this).
 #' @param id_col Column name in list_subjects that contain the unique subject identifier.
@@ -56,21 +56,21 @@
 #'                       Yaxi = "y", time = "time", Zones = Zonas,
 #'                       threshold = 3, Dist.reg = "point",
 #'                       reg = data.frame(x = 0, y = 0))
-g_Allbasics <- function(list_subjects, list_dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = NA, time = NA, frames = NA, fps = 30,
+g_Allbasics <- function(list_subjects, list_dftz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = NA, time = NA, frames = NA, fps = 30,
                         id_col = NULL, id = 1, Zones = NA, n.zonesd2, n.zonesd3 = 0, faceZ = 0,
                         maxX = NA, minX = NA, maxY = NA, minY = NA, maxZ = NA, minZ = NA, npts = 4, Circ_Arena = F, threshold = 5,
                         Dist.reg = F, reg = NA){
-  if(base::is.null(list_dadoz)){
-    list_subjects <- base::lapply(list_subjects, FUN = Allbasics, dadoz = list_dadoz, Xaxi = Xaxi, Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames,
+  if(base::is.null(list_dftz)){
+    list_subjects <- base::lapply(list_subjects, FUN = Allbasics, dftz = list_dftz, Xaxi = Xaxi, Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames,
                                   fps = fps, id_col = id_col, id = id, Zones = Zones, n.zonesd2 = n.zonesd2, n.zonesd3 = n.zonesd3,
                                   faceZ = faceZ, maxX = maxX, minX = minX, maxY = maxY, minY = minY, maxZ = maxZ, minZ = minZ,
                                   npts = npts, Circ_Arena = Circ_Arena, threshold = threshold, Dist.reg = Dist.reg, reg = reg)
     list_subjects
-  }else if(base::typeof(list_dadoz) == "list"){
-    if(base::length(list_subjects) == base::length(list_dadoz)){
-      for (i in 1:base::length(list_dadoz)) {
+  }else if(base::typeof(list_dftz) == "list"){
+    if(base::length(list_subjects) == base::length(list_dftz)){
+      for (i in 1:base::length(list_dftz)) {
 
-        list_subjectsz <- Allbasics(dado = list_subjects[[i]], dadoz = list_dadoz[[i]], Xaxi = Xaxi, Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames,
+        list_subjectsz <- Allbasics(dft = list_subjects[[i]], dftz = list_dftz[[i]], Xaxi = Xaxi, Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames,
                                     fps = fps, id_col = id_col, id = id, Zones = Zones, n.zonesd2 = n.zonesd2, n.zonesd3 = n.zonesd3,
                                     faceZ = faceZ, maxX = maxX, minX = minX, maxY = maxY, minY = minY, maxZ = maxZ, minZ = minZ,
                                     npts = npts, Circ_Arena = Circ_Arena, threshold = threshold, Dist.reg = Dist.reg, reg = reg)
@@ -80,7 +80,7 @@ g_Allbasics <- function(list_subjects, list_dadoz = NULL, Xaxi = "x_cm", Yaxi = 
       }
       list_subjects
     }
-  }else{stop("Incorrect input. The dadoz and list_subjects must have the same length.
-              Check if you really have dadoz observations or else set dadoz = NULL",
+  }else{stop("Incorrect input. The dftz and list_subjects must have the same length.
+              Check if you really have dftz observations or else set dftz = NULL",
              call. = FALSE)}
 }

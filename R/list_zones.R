@@ -1,6 +1,6 @@
 #' Split the trajectory into zones of interest
 #'
-#' @param dado A data frame crated by \link[CartesianBehaviour]{standardized_trj} containing the positions and time of an subject.
+#' @param dft A data frame crated by \link[CartesianBehaviour]{standardized_trj} containing the positions and time of an subject.
 #' @param Zones A data frame crated by \link[CartesianBehaviour]{Zones_int} containing the zones of interest.
 #' @param Zplane The complementary axis used in \link[CartesianBehaviour]{Zones_int}. Input can be "xz", "zx", "yz" or "zy".
 #' @param remove2D To remove the 2D zones from the final data. FALSE by default.
@@ -46,7 +46,7 @@
 #' #
 #' #Split the zones
 #' #TRAJ3D <- list_zones(TrajEXP, Zones = zons3D, Zplane = "xz", , remove2D = TRUE)
-list_zones <- function(dado, Zones, Zplane = NA, remove2D = FALSE){
+list_zones <- function(dft, Zones, Zplane = NA, remove2D = FALSE){
 
   zonesXY <- Zones[[1]]
   final <- base::list()
@@ -55,12 +55,12 @@ list_zones <- function(dado, Zones, Zplane = NA, remove2D = FALSE){
 
   for (i in 1:base::length(zonesXY)){
 
-    inzone <- TrajInPlanezone(dado, zonesXY[[i]], plane = "xy")
+    inzone <- TrajInPlanezone(dft, zonesXY[[i]], plane = "xy")
     alt <- inzone
     alt[alt == 1] <- i
     alt[alt != i] <- 0
 
-    final[[base::length(final) + 1]] <- funfunfun(alt, dado)
+    final[[base::length(final) + 1]] <- funfunfun(alt, dft)
     nonames <- base::data.frame(base::rbind(nonames, base::as.character(i)))
     final
 
@@ -69,7 +69,7 @@ list_zones <- function(dado, Zones, Zplane = NA, remove2D = FALSE){
       zonesZ <- Zones[[2]]
       for (j in 1:base::length(zonesZ)){
 
-        inzone <- TrajInPlanezone(dado, zonesZ[[j]], plane = Zplane)
+        inzone <- TrajInPlanezone(dft, zonesZ[[j]], plane = Zplane)
         elt <- inzone
         elt[elt == 1] <- j
         elt[elt != j] <- 0
@@ -77,7 +77,7 @@ list_zones <- function(dado, Zones, Zplane = NA, remove2D = FALSE){
         ilt <- base::as.numeric(base::paste(alt,elt, sep = "."))
         ilt[ilt != base::as.numeric(base::paste(i,j, sep = "."))] <- 0
 
-        final[[base::length(final) + 1]] <- funfunfun(ilt, dado, axi = Zplane)
+        final[[base::length(final) + 1]] <- funfunfun(ilt, dft, axi = Zplane)
         nonames <- base::data.frame(base::rbind(nonames, base::paste(i,j, sep = ".")))
         final
       }
@@ -88,12 +88,12 @@ list_zones <- function(dado, Zones, Zplane = NA, remove2D = FALSE){
     zonesZ <- Zones[[2]]
     for (j in 1:base::length(zonesZ)){
 
-      inzone <- TrajInPlanezone(dado, zonesZ[[j]], plane = Zplane)
+      inzone <- TrajInPlanezone(dft, zonesZ[[j]], plane = Zplane)
       elt <- inzone
       elt[elt == 1] <- base::as.numeric(base::paste(0,j, sep = "."))
       elt[elt != base::as.numeric(base::paste(0,j, sep = "."))] <- 0
 
-      final[[base::length(final) + 1]] <- funfunfun(elt, dado, axi = Zplane)
+      final[[base::length(final) + 1]] <- funfunfun(elt, dft, axi = Zplane)
       nonames <- base::data.frame(base::rbind(nonames, base::paste(0,j, sep = ".")))
       final
 
@@ -102,10 +102,10 @@ list_zones <- function(dado, Zones, Zplane = NA, remove2D = FALSE){
 
   if(Zplane %in% c("xz","zx")){
 
-    dado$polarxz <- base::complex(real = dado$x, imaginary = dado$z)
+    dft$polarxz <- base::complex(real = dft$x, imaginary = dft$z)
   }else if(Zplane %in% c("yz","zy")){
 
-    dado$polaryz <- base::complex(real = dado$y, imaginary = dado$z)
+    dft$polaryz <- base::complex(real = dft$y, imaginary = dft$z)
   }
 
   for (i in 1:base::length(final)){
@@ -118,8 +118,8 @@ list_zones <- function(dado, Zones, Zplane = NA, remove2D = FALSE){
     }
   }
 
-  dado$polar <- base::complex(real = dado$x, imaginary = dado$y)
-  final[[base::length(final) + 1]] <- base::list(dado)
+  dft$polar <- base::complex(real = dft$x, imaginary = dft$y)
+  final[[base::length(final) + 1]] <- base::list(dft)
   namezon[base::nrow(namezon)+1,] <- base::rbind(base::c("Total"))
   namezon <- namezon[2:base::nrow(namezon),]
 

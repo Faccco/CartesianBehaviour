@@ -2,16 +2,16 @@
 #'
 #' Include all analysis by-frame necessary to calculate the means and by-time measures for one sample.
 #'
-#' @param dado A Data Frame containing tracking information, including X, Y and, optionally, Z coordinates.
-#' @param frames Column name in dados representing the frame number or time stamp.
+#' @param dft A Data Frame containing tracking information, including X, Y and, optionally, Z coordinates.
+#' @param frames Column name in dfts representing the frame number or time stamp.
 #' @param threshold A defined speed to be tested. Measure of speed depends on the input measure of time and distances in XYZ coordinates.
-#' @param dadoz A second data frame that contains the z observations and other identifiers.
-#' @param Xaxi Column name in the dado data frame that includes the X coordinates .
-#' @param Yaxi Column name in the dado data frame that includes the Y coordinates.
-#' @param Zaxi Column name in dadoz, or a vector of the type double  containing the z observations.
+#' @param dftz A second data frame that contains the z observations and other identifiers.
+#' @param Xaxi Column name in the dft data frame that includes the X coordinates .
+#' @param Yaxi Column name in the dft data frame that includes the Y coordinates.
+#' @param Zaxi Column name in dftz, or a vector of the type double  containing the z observations.
 #' @param id Identifier of the subject.
 #' @param fps The frame rate or another value to convert the time marker into a desired one (the value of time will be divided by this).
-#' @param id_col Column name in dados that contain the unique subject identifier.
+#' @param id_col Column name in dfts that contain the unique subject identifier.
 #' @param Dist.reg Vector, can be the distance to a "point", "line" or "plane". NA for no measure.
 #' @param n.zonesd2 Number of zones for 2D analysis.
 #' @param n.zonesd3 Number of zones for 3D analysis.
@@ -26,7 +26,7 @@
 #' @param Circ_Arena A logical indicating whether do draw a circular boundary to position the point . FALSE by default.
 #' @param Zones A data frame crated by \link[CartesianBehaviour]{Zones_int} containing the zones of interest. NA by  default to create the zones within the analysis.
 #' @param reg A data frame with the x,y (and optionally z) axis. "NOT" by default to pin the point/line/plane manually in the plot tab.
-#' @param time The column name in dados representing the time stamp in integers.
+#' @param time The column name in dfts representing the time stamp in integers.
 #' @param deg Convert into degrees. If FALSE will generate the angles in radians.
 #' @param bodyarch If you have any kind of of 3 point tracking select a type of data input. "unique" by default. See more in \link[CartesianBehaviour]{standardized_trj} description for Gtype.
 #' @param center The name of the center point input.
@@ -56,11 +56,11 @@
 #' rm(Z1, Z2, Z3, Z4, ZN)
 #'
 #' #Perform all the measures
-#' TRAJ2D <- Allbasics(dado = Traj, Xaxi = "x", Yaxi = "y", time = "time",
+#' TRAJ2D <- Allbasics(dft = Traj, Xaxi = "x", Yaxi = "y", time = "time",
 #'                     Zones = Zonas, threshold = 3, Dist.reg = "point",
 #'                     reg = data.frame(x = 0, y = 0))
 #' #View(TRAJ2D)
-Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = NA, time = NA, frames = NA, fps = 30,
+Allbasics <- function(dft, dftz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = NA, time = NA, frames = NA, fps = 30,
                       id_col = NULL, id = 1, Zones = NA, n.zonesd2, n.zonesd3 = 0, faceZ = 0,
                       maxX = NA, minX = NA, maxY = NA, minY = NA, maxZ = NA, minZ = NA, npts = 4, deg = T,  Circ_Arena = F, threshold = 5,
                       Dist.reg = NA, reg = "NOT", bodyarch = NA, center = NA, head = NA, tail = NA, sidesum = F){
@@ -77,11 +77,11 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
   }
 
   if(!(is.na(bodyarch))){
-    dados <- CartesianBehaviour::standardized_trj(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi,
+    dfts <- CartesianBehaviour::standardized_trj(dft = dft, dftz = dftz, Xaxi = Xaxi, Yaxi = Yaxi,
     Zaxi = Zaxi, frames = frames, time = time, id = id, id_col = id_col,
     fps = fps, Gtype = bodyarch, center = center, head = head, tail = tail)
 
-    dados <- body_arch_by_frame(list_zones = dados, sidesum = sidesum)
+    dfts <- body_arch_by_frame(list_zones = dfts, sidesum = sidesum)
 
     if(base::grepl("2", bodyarch)){
 
@@ -92,13 +92,13 @@ Allbasics <- function(dado, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm", Zaxi = N
 
   }else{
 
-    dados <- CartesianBehaviour::standardized_trj(dado = dado, dadoz = dadoz, Xaxi = Xaxi, Yaxi = Yaxi,
+    dfts <- CartesianBehaviour::standardized_trj(dft = dft, dftz = dftz, Xaxi = Xaxi, Yaxi = Yaxi,
     Zaxi = Zaxi, time = time, frames = frames, id = id, id_col = id_col,
     fps = fps, Gtype = "unique", center = center, head = head, tail = tail)
 
   }
 
-  listzones <- CartesianBehaviour::list_zones(dados, Zones, zplane)
+  listzones <- CartesianBehaviour::list_zones(dfts, Zones, zplane)
   listzones <- CartesianBehaviour::distances_by_frame(listzones)
   listzones <- CartesianBehaviour::speeds_by_frame(listzones)
   listzones <- CartesianBehaviour::threshold_speed_by_frame(listzones, threshold)

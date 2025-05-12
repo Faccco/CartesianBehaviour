@@ -3,15 +3,15 @@
 #' A standardize data frame. Note that if Z is a vector its length must be the same as of the X and Y.
 #'
 #' @param list_subjects A list containing the main data frame containing trajectory data (X and Y coordinates), an identifier of the subject and a frame or time information.
-#' @param dadoz A second list that contains the data frames with the z coordinates and the other identifiers.
+#' @param dftz A second list that contains the data frames with the z coordinates and the other identifiers.
 #' @param Xaxi A character input representing the column in list_subjects presenting the X coordinates.
-#' @param Yaxi A character input representing the column in dado presenting the Y coordinates.
-#' @param Zaxi Can be the name of the column in dadoz, or a vector of the type double (numeric) containing the Z coordinates.
-#' @param frames The column in dados representing frame information.
+#' @param Yaxi A character input representing the column in dft presenting the Y coordinates.
+#' @param Zaxi Can be the name of the column in dftz, or a vector of the type double (numeric) containing the Z coordinates.
+#' @param frames The column in dfts representing frame information.
 #' @param id Numeric identifier of the subject.
-#' @param id_col The column in dados that contain the subject identifier of the observations. If there is no identifier column all the data in the data frame will be considered.
+#' @param id_col The column in dfts that contain the subject identifier of the observations. If there is no identifier column all the data in the data frame will be considered.
 #' @param fps The frame rate or another value to convert the time marker into a desired one.
-#' @param time The column in dados representing time information.
+#' @param time The column in dfts representing time information.
 #'
 #' @return A standardized list of data frames
 #' @export
@@ -31,18 +31,18 @@
 #' TrajEXP <- g_standardized_trj(Traj, Xaxi = "x", Yaxi = "y",
 #'                       time = "time", id = 1, fps = 30)
 #' #View(TrajEXP)
-g_standardized_trj <- function(list_subjects, dadoz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
+g_standardized_trj <- function(list_subjects, dftz = NULL, Xaxi = "x_cm", Yaxi = "y_cm",
                        Zaxi = NA, time = NA, frames = NA, id = 1, id_col = NULL, fps = 30){
-  if(base::is.null(dadoz)){
-    list_subjects <- base::lapply(list_subjects, FUN = standardized_trj, dadoz = dadoz, Xaxi = Xaxi,
+  if(base::is.null(dftz)){
+    list_subjects <- base::lapply(list_subjects, FUN = standardized_trj, dftz = dftz, Xaxi = Xaxi,
                                   Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames, id = id,
                                   id_col = id_col, fps = fps)
     list_subjects
-  }else if(base::typeof(dadoz) == "list"){
-    if(base::length(list_subjects) == base::length(dadoz)){
-      for (i in 1:base::length(dadoz)) {
+  }else if(base::typeof(dftz) == "list"){
+    if(base::length(list_subjects) == base::length(dftz)){
+      for (i in 1:base::length(dftz)) {
 
-        list_subjectsz <- CartesianBehaviour::standardized_trj(list_subjects[[i]], dadoz = dadoz[[i]], Xaxi = Xaxi,
+        list_subjectsz <- CartesianBehaviour::standardized_trj(list_subjects[[i]], dftz = dftz[[i]], Xaxi = Xaxi,
                                    Yaxi = Yaxi, Zaxi = Zaxi, time = time, frames = frames, id = id,
                                    id_col = id_col, fps = fps)
 
@@ -51,7 +51,7 @@ g_standardized_trj <- function(list_subjects, dadoz = NULL, Xaxi = "x_cm", Yaxi 
       }
       list_subjects
     }
-  }else{stop("Incorrect input. The dadoz and list_subjects must have the same length.
-              Check if you really have dadoz observations or else set dadoz = NULL",
+  }else{stop("Incorrect input. The dftz and list_subjects must have the same length.
+              Check if you really have dftz observations or else set dftz = NULL",
              call. = FALSE)}
 }

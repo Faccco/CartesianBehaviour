@@ -1,7 +1,7 @@
 # Internal function to split a data frame by a vector of interest zones in a defined axis.
 #
 # @param xlt vector of values to consider inside or outside a zone.
-# @param xdado data frame to be spliced.
+# @param xdft data frame to be spliced.
 # @param axi the axis to be considered.
 # @param MOD define if the exported zone is marked by 0's or 1's.
 #
@@ -10,33 +10,33 @@
 #
 # @examples #See list.zones( ).
 # @keywords internal
-funfunfun <- function(xlt, xdado, axi = 0, MOD = 1){
+funfunfun <- function(xlt, xdft, axi = 0, MOD = 1){
   tempos <- inzone <- NULL
   passag <- list()
 
-  xdado$inzone <- xlt
+  xdft$inzone <- xlt
 
-  xdado$tempos <- (xdado$inzone - dplyr::lead(xdado$inzone))
+  xdft$tempos <- (xdft$inzone - dplyr::lead(xdft$inzone))
 
-  d <- dplyr::filter(xdado, tempos != 0)
+  d <- dplyr::filter(xdft, tempos != 0)
 
-  xdado <- data.frame(xdado)
+  xdft <- data.frame(xdft)
 
   splits <- base::data.frame(d$row + 1)
 
   if(axi == "yz" | axi == "zy"){
 
-    xdado$polaryz <- base::complex(real = xdado$y, imaginary = xdado$z)
+    xdft$polaryz <- base::complex(real = xdft$y, imaginary = xdft$z)
 
   }else if(axi == "xz" | axi == "zx"){
 
-    xdado$polarxz <- base::complex(real = xdado$x, imaginary = xdado$z)
+    xdft$polarxz <- base::complex(real = xdft$x, imaginary = xdft$z)
 
   }else{
 
-    xdado$polar <- base::complex(real = xdado$x, imaginary = xdado$y)
+    xdft$polar <- base::complex(real = xdft$x, imaginary = xdft$y)
   }
-  passag <- trajr::TrajSplit(xdado, idx = splits)
+  passag <- trajr::TrajSplit(xdft, idx = splits)
 
   if(MOD == 1){
   znx <- base::lapply(passag, function(x) dplyr::filter(x, inzone != 0))

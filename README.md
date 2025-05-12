@@ -20,7 +20,7 @@ remotes::install_github("Faccco/CartesianBehaviour")
 ```
 
 ## Basic Usage
-Trajectory Generation with trajr
+Trajectory Generation with [trajr](https://github.com/JimMcL/trajr)
 
 ```
 library(trajr)
@@ -42,13 +42,13 @@ zones <- list(
 ### Interactive Zone Definition
 
 ```
-# Uncomment to interactively define zones
+# Uncomment to interactively define zones. You MUST CLICK in the plot tab to get and output.
 # zones <- Zone_int(
-#   nzonesd2 = 3, 
-#   maxX = 10, minX = -10,
-#   maxY = 5, minY = -5,
-#   npts = 4,
-#   Circ_Arena = FALSE
+#   nzonesd2 = 3, # Number of zones of nterest
+#   maxX = 10, minX = -10, # Maximum and minimum X positions of the arena
+#   maxY = 5, minY = -5, # Maximum and minimum Y positions of the arena
+#   npts = 4, # Number of vertices that define the polygon representing the zone of interest.
+#   Circ_Arena = FALSE # A logical indicating whether do draw a circular boundary to position the point.
 # )
 ```
 
@@ -57,11 +57,11 @@ zones <- list(
 ```
 # Calculate core metrics
 analysis_data <- g_Allbasics(
-  TRAJ = trajectories,
-  Xaxi = "x",
-  Yaxi = "y",
-  frames = "time",
-  fps = 30,
+  dado = trajectories, # Dataframe with the track
+  Xaxi = "x", # Name of the x column or a vector with the x positions
+  Yaxi = "y", # Name of the y column or a vector with the y positions
+  frames = "time", # Name of the frames column or a vector with the frames
+  fps = 30, # Frame rate of the video
   #n.zonesd2,          # Number of zones (optional)
   #faceZ = 0,          # Zone facing direction (optional)
   #maxX = NA,          # Maximum X boundary (optional)
@@ -69,10 +69,11 @@ analysis_data <- g_Allbasics(
   #maxY = NA,          # Maximum Y boundary (optional)
   #minY = NA,          # Minimum Y boundary (optional)
   #npts = 4,           # Number of polygon points (optional)
-  Zones = zones,
-  Circ_Arena = FALSE,
+  Zones = zones, # A data frame crated containing the zones of interest.
+  Circ_Arena = FALSE, # Logical, plot a circle the size f the arena if Zones is NA.
   threshold = 0.59,  # Immobility threshold (zebrafish: <0.59 cm/s)
-  Dist.reg = FALSE
+  Dist.reg = FALSE, # Vector, can be the distance to a "point", "line" or "plane". NA for no measure.
+  reg =  "NOT" # A data frame with the x,y axis. "NOT" by default to pin the point/line/plane manually in the plot tab.
 )
 
 # Extract specific metrics
