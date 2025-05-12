@@ -55,7 +55,8 @@ zones <- list(
 ## Behavioral Analysis
 <br>
 *NOTE:* To analyze your behavioral data using the functions above, your dataset must include a list of data frames (trajectories), each containing at minimum the X, Y, and time columns representing spatial coordinates and temporal frames, respectively. <br><br>
-Before running the core metric functions, make sure to carefully define your zones of interest (Zones = zones) based on your specific video setup. The configuration of zones—such as their shape, position, and number of polygon points—needs to be tailored to your arena layout and experimental design. Refer to the n.pts, Zones, and Circ_Arena arguments for proper setup.
+Before running the core metric functions, make sure to carefully define your zones of interest (Zones = zones) based on your specific video setup. The configuration of zones—such as their shape, position, and number of polygon points—needs to be tailored to your arena layout and experimental design. Refer to the n.pts, Zones, and Circ_Arena arguments for proper setup. <br>
+
 ```
 # Calculate core metrics
 analysis_data <- g_Allbasics(
