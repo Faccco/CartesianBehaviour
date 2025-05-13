@@ -59,6 +59,8 @@ Before running the core metric functions, make sure to carefully define your zon
 
 ```
 # Calculate core metrics
+library(CartesianBehaviour)
+
 analysis_data <- g_Allbasics(
   list_subjects = trajectories, # Dataframe with the track
   Xaxi = "x", # Name of the x column or a vector with the x positions
