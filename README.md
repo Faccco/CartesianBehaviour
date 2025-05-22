@@ -44,7 +44,7 @@ zones <- list(
 ```
 # Uncomment to interactively define zones. You MUST CLICK in the plot tab to get and output.
 # zones <- Zones_int(
-#   nzonesd2 = 3, # Number of zones of nterest
+#   nzonesd2 = 3, # Number of zones of interest
 #   maxX = 10, minX = -10, # Maximum and minimum X positions of the arena
 #   maxY = 5, minY = -5, # Maximum and minimum Y positions of the arena
 #   npts = 4, # Number of vertices that define the polygon representing the zone of interest.
