@@ -43,7 +43,7 @@ zones <- list(
 
 ```
 # Uncomment to interactively define zones. You MUST CLICK in the plot tab to get and output.
-# zones <- Zone_int(
+# zones <- Zones_int(
 #   nzonesd2 = 3, # Number of zones of nterest
 #   maxX = 10, minX = -10, # Maximum and minimum X positions of the arena
 #   maxY = 5, minY = -5, # Maximum and minimum Y positions of the arena

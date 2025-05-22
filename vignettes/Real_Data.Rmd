@@ -1,0 +1,29 @@
+---
+title: "Real Data"
+author: "Faco"
+date: "2025-05-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+In this vignet we will revise all CartesianBehaviour functions using some data of zebrafish (_Danio rerio_) Short-fin (_SF_) and Leopard (_LEO_) from a Novel Tank Diving Test (NTT). The databse is diposible at [NTTZebra](https://github.com/Faccco/NTTZebra), Note tha the the database NTTZebra is a aroud 18MB database, be shure to check your sotorage if trying by yourself to run this example.
+
+To install the database
+```
+install.packages("remotes")
+remotes::install_github("Faccco/CartesianBehaviour")
+remotes::install_github("Faccco/NTTZebra")
+
+```
+
+For storage propuses we will use 5 WT and 5 LEO fich from the [ToxTrac](https://sourceforge.net/projects/toxtrac/) trakings. The code bellow show how to import this data from the package to your envirement, but under the vignet we are imorting the data directly to spare storage.
+
+```
+ToxTrac[[]]
+```
+

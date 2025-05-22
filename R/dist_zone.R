@@ -42,14 +42,14 @@ dist_zone <- function(list_zones){
     if(base::length(zonedist) > 0){
       BB <- base::data.frame()
       for (j in 1:base::length(zonedist)) {
-        distancezon <- base::sum(zonedist[[j]]$dist)
+        distancezon <- base::sum(zonedist[[j]]$dist, na.rm = T)
         BB <- base::rbind(BB, base::as.numeric(distancezon))
         BB
       }
     }else{
       BB <- 0
     }
-    sumdist <- base::sum(BB[[1]])
+    sumdist <- base::sum(BB[[1]], na.rm = T)
     AA <- base::cbind(AA, sumdist)
     AA
 
